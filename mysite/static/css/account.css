@@ -11,7 +11,7 @@ body {
 }
 
 h1 {
-  color: #a0ee89e1;
+  color: #ffcd48;
   font-size: 48px;
   letter-spacing: -3px;
   text-align: center;
@@ -99,7 +99,7 @@ form .input__block input.repeat__password {
   transition: 0.2s linear;
 }
 form .signin__btn {
-  background: #a0ee89e1;
+  background: #ffcd48;
   color: white;
   display: block;
   width: 92.5%;
@@ -111,7 +111,7 @@ form .signin__btn {
   cursor: pointer;
   font-size: 14px;
   font-family: "Montserrat", sans-serif;
-  box-shadow: 0 15px 30px rgba(78, 255, 87, 0.36);
+  box-shadow: 0 15px 30px rgba(235, 156, 9, 0.868);
   transition: 0.2s linear;
 }
 form .signin__btn:hover {
@@ -200,7 +200,7 @@ footer p {
   text-align: center;
 }
 footer p .fa {
-  color: #a0ee89e1;
+  color: #ffcd48;
 }
 footer p a {
   text-decoration: none;

@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post
 from user.models import User
 
 # Create your views here.
 
+@login_required(login_url='user:signin')
 def index(request):
     if request.method == 'GET':
         context = dict()
@@ -22,8 +23,7 @@ def post_detail(request, post_id):
 @login_required(login_url='user:signin')
 def my_list(request, user_id):
     if request.method == 'GET':
-        user = request.user
-        if user:
-            context = dict()
-            context['posts'] = Post.objects.filter(id=user_id)
-            return render(request, 'post/post/post_mylist.html', context=context)
+        context = dict()
+        context['user'] = User.objects.get(id=user_id)
+        context['posts'] = Post.objects.filter(id=user_id)
+        return render(request, 'post/post/post_mylist.html', context=context)
