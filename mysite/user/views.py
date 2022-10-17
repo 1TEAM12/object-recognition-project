@@ -5,9 +5,6 @@ from .models import User
 from .validators import contains_special_character, contains_uppercase_letter, contains_lowercase_letter, contains_number
 # Create your views here.
 
-def index(request):
-    return render(request, 'user/account/index.html')
-
 #####로그인#####
 def signin(request):
     if request.method == 'GET':
