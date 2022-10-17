@@ -47,7 +47,9 @@
           </div>
           <ul class="nav">
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
+            {% comment %} 
             <li><a href="{% url 'post:my-list' user.id%}" title="">MyFruit</a></li>
+            {% endcomment %}
             <li><a href="#" title="">FruitCreate</a></li>
             <li><a href="#" title="">Contact</a></li>
             <li><a href="#" title="">Components</a></li>
