@@ -16,7 +16,7 @@
   <link href="  {% static 'assets/favicon.ico'%}" rel="icon">
 
 
-{% block title %}<title></title>{% endblock title %}
+{% block title %}{% endblock title %}
 
 
 <link href="  {% static 'css/main.82cfd66e.css'%}" rel="stylesheet"></head>
@@ -47,8 +47,8 @@
           </div>
           <ul class="nav">
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
-            <li><a href="#" title="">MyPage</a></li>
-            <li><a href="#" title="">Create</a></li>
+            <li><a href="{% url 'post:my-list' user.id%}" title="">MyFruit</a></li>
+            <li><a href="#" title="">FruitCreate</a></li>
             <li><a href="#" title="">Contact</a></li>
             <li><a href="#" title="">Components</a></li>
             {% if user.is_authenticated %}
@@ -65,7 +65,7 @@
                 <i class="fa fa-github"></i>
               </a>
             </p>
-            <p>© Copyrignt | Sparkling Coffee Club 2022</p>
+            <p>© Copyrignt | Sparkling Coffee Club</p>
           </nav>  
         </div> 
       </nav>

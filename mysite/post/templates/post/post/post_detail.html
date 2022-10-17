@@ -1,0 +1,56 @@
+{% extends "../post_base/base.html" %}
+
+{% load static %}
+{% block title %}
+    <title>Sparkling Coffee Club | {{ post.title }}</title>
+{% endblock title %}
+<!-- Add your site or app content here -->
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+
+            <div class="section-container-spacer">
+                <h1>{{ post.title }}</h1>
+                <h2>{{ post.author.username }}</h2>
+            </div>
+            <div class="section-container-spacer">
+                <p><img class="img-responsive" alt="" src="{{ post.image.url }}"></p>
+            </div>
+
+            <h3>Dessert Recommend</h3>
+            <div class="grid-item">
+                <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                <a href="#" class="project-description">
+                    <div class="project-text-holder">
+                        <div class="project-text-inner">
+                            <h5>음식 레시피 이름</h5>
+                            <p>Recipe More</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="grid-item">
+                <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                <a href="#" class="project-description">
+                    <div class="project-text-holder">
+                        <div class="project-text-inner">
+                            <h5>음식 레시피 이름</h5>
+                            <p>Recipe More</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="grid-item">
+                <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                <a href="#" class="project-description">
+                    <div class="project-text-holder">
+                        <div class="project-text-inner">
+                            <h5>음식 레시피 이름</h5>
+                            <p>Recipe More</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
