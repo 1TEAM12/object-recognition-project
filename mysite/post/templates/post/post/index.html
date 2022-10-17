@@ -1,49 +1,28 @@
 {% extends "../post_base/base.html" %}
 
 {% load static %}
-{% block title %} Sparkling Coffee Club| Home {% endblock title%}
+{% block title %} <title>Sparkling Coffee Club| Home</title> {% endblock title%}
 <!-- Add your site or app content here -->
 {% block content %}
+<h3>Home</h3>
 <div class="hero-full-wrapper">
   <div class="grid">
   <div class="gutter-sizer"></div>
     <div class="grid-sizer"></div>
+    {% for post in posts %}
     <div class="grid-item">
-      <img class="img-responsive" alt="" src="{% static './assets/images/img-12.jpg'%}">
-      <a href="#" class="project-description">
+      <img class="img-responsive" alt="" src="{{ post.image.url }}">
+      <a href="{% url 'post:post-detail' post.id%}" class="project-description">
         <div class="project-text-holder">
           <div class="project-text-inner">
-            <h3>Vivamus vestibulum</h3>
-            <p>Discover more</p>
+            <h5>{{ post.author.username }}님</h5>
+            <h3>{{ post.title }}</h3>
+            <p>Review More</p>
           </div>
         </div>
       </a>
     </div>
-
-    
-    <div class="grid-item">
-      <img class="img-responsive" alt="" src="{% static './assets/images/img-05.jpg'%}">
-      <a href="#" class="project-description">
-        <div class="project-text-holder">
-          <div class="project-text-inner">
-            <h3>Vivamus vestibulum</h3>
-            <p>Discover more</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="grid-item">
-      <img class="img-responsive" alt="" src="{% static './assets/images/img-13.jpg'%}">
-      <a href="#" class="project-description">
-        <div class="project-text-holder">
-          <div class="project-text-inner">
-            <h3>Vivamus vestibulum</h3>
-            <p>Discover more</p>
-          </div>
-        </div>
-      </a>
-    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock content %}
