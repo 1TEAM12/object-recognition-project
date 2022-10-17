@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="Page description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  <link href="  {% static 'assets/apple-icon-180x180.png'%}" rel="apple-touch-icon">
+  <link href="  {% static 'assets/favicon.ico'%}" rel="icon">
+
+
+{% block title %}<title></title>{% endblock title %}
+
+
+<link href="  {% static 'css/main.82cfd66e.css'%}" rel="stylesheet"></head>
+
+<body>
+
+    <!-- Add your content of header -->
+    <header class="">
+      <div class="navbar navbar-default visible-xs">
+        <button type="button" class="navbar-toggle collapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="{% url 'post:index' %}" class="navbar-brand">Sparkling Coffee Club</a>
+      </div>
+    
+      <nav class="sidebar">
+        <div class="navbar-collapse" id="navbar-collapse">
+          <div class="site-header hidden-xs">
+              <a class="site-brand" href="{% url 'post:index' %}" title="">
+                <img class="img-responsive site-logo" alt="" src="{% static './assets/images/mashup-logo.svg'%}">
+                Sparkling Coffee Club
+              </a>
+            <p>디저트를 추천해주는 서비스</p>
+            <p>{{user.username }}님 환영합니다.
+          </div>
+          <ul class="nav">
+            <li><a href="{% url 'post:index' %}" title="">Home</a></li>
+            <li><a href="#" title="">MyPage</a></li>
+            <li><a href="#" title="">Create</a></li>
+            <li><a href="#" title="">Contact</a></li>
+            <li><a href="#" title="">Components</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'user:logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'user:signin' %}">Sign In</a></li>
+            <li><a href="{% url 'user:signup' %}">Sign Up</a></li>
+            {% endif %}
+          </ul>
+    
+          <nav class="nav-footer">
+            <p class="nav-footer-social-buttons">
+              <a class="fa-icon" href="https://github.com/1TEAM12/object-recognition-project" title="">
+                <i class="fa fa-github"></i>
+              </a>
+            </p>
+            <p>© Copyrignt | Sparkling Coffee Club 2022</p>
+          </nav>  
+        </div> 
+      </nav>
+    </header>
+    <main class="" id="main-collapse">
+        {% block content %}
+        {% endblock content %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        masonryBuild();
+    });
+</script>
+    
+    </main>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+    navbarToggleSidebar();
+    navActivePage();
+    });
+    </script>
+    
+    <script type="text/javascript" src="  {% static '/js/main.85741bff.js'%}"></script></body>
+    
+</html>
