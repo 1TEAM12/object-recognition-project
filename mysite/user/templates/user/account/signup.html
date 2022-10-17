@@ -1,11 +1,49 @@
-회원가입
-<form method="post" >{% csrf_token %}
-    <input type="email" placeholder="이메일" name="email" maxlength="50"/><p />
-    <input type="text" placeholder="사용자 이름" name="username" maxlength="10"/><p />
-    <input type="password"  placeholder="비밀번호" name="password" /><p />
-    <input type="password" placeholder="비밀번호 재확인" name="password2" /><p />
+{% extends "../user_base/base.html" %}
+
+{% block title %}Sparkling Coffee Club | Sign Up{% endblock title%}
+
+{% block content %}
+<div class="container">
+    <!-- Heading -->
+    <h1>Sign Up</h1>
+    
+    <!-- Links -->
+    <ul class="links">
+    <li>
+        <a href="{% url 'user:signin' %}">SIGN IN</a>
+    </li>
+    <li>
+        <a href="{% url 'user:signup' %}" >SIGN UP</a>
+    </li>
+    </ul>
+    
+    <!-- Form -->
+    <form method="post">{% csrf_token %}
+    <!-- email input -->
+    <div class="input__block">
+        <input type="email" placeholder="Email" class="input" name='email' maxlength="50"   />
+    </div>
+    <!-- username input -->
+    <div class="input__block">
+        <input type="text" placeholder="Username" class="input" name='username' maxlength="10"   />
+    </div>
+    <!-- password input -->
+    <div class="input__block">
+        <input type="password" placeholder="Password" class="input" name='password'   />
+    </div>
+    <!-- repeat password input -->
+    <div class="input__block">
+        <input type="password" placeholder="Repeat Password" class="input" name='repeatpassword'   />
+    </div>
     {% if error %}
-        {{ error }}<p />
+    <div class="alert alert-danger" >
+        {{ error }}
+    </div>
     {% endif %}
-    <input type="submit" value="가입">
-</form>
+    <!-- sign up button -->
+    <button class="signin__btn">
+        Sign Up
+    </button>
+    </form>
+</div>
+{% endblock content %}

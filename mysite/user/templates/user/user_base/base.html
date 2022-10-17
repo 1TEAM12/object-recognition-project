@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}{% endblock title %}</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:500,800" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="{% static 'css/account.css' %}">
+
+</head>
+<body>
+{% block content %}
+{% endblock content %}
+<footer>
+    <p>
+    Sparkling Coffee Club
+    <a href="https://github.com/1TEAM12/object-recognition-project" >
+        <i class="fa fa-github"></i>
+    </a>
+    </p>
+</footer>
+</body>
+
+</html>
