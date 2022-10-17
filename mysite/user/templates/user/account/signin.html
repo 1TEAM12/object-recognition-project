@@ -1,0 +1,9 @@
+로그인
+<form method="post" >{% csrf_token %}
+    <input type="email" placeholder="이메일" name="email" /><p />
+    <input type="password"  placeholder="비밀번호" name="password" /><p />
+    {% if error %}
+        {{ error }}<p />
+    {% endif %}
+    <input type="submit" value="로그인">
+</form>
