@@ -34,6 +34,7 @@
                     </div>
                     {% if request.user == post.author %}
                     <a href="{% url 'post:post-update' post.id %}">수정</a>
+                    <a href="{% url 'post:post-delete' post.id %}">삭제</a>
                     {% endif %}
                     <div style='display:flex; align-items: center;'>
                         <div style='cursor:pointer; padding:8px;'><a><img src="{% static './assets/like_empty.png'%}"/></a></div>

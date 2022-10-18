@@ -62,7 +62,14 @@ def post_update(request, post_id):
         post.content = request.POST.get('content')
         post.save()
         return redirect('/')
+    
+#게시글 삭제
+@login_required(login_url='user:signin')
+def post_delete(request, post_id):
+        post = get_object_or_404(Post,id=post_id)
+        if request.user == post.author:
+            post.delete()
+            return redirect('/')
+        return redirect(request.META['HTTP_REFERER'])
 
-
-def delete(request, post_id):
-    pass
+        
