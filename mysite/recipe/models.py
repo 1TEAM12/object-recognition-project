@@ -5,7 +5,7 @@ from post.models import Post
 # Create your models here.
 class Recipe(models.Model):
     title = models.CharField(max_length=30, blank=True)
-    image = models.ImageField(upload_to="post_pics", blank=True)
+    image = models.ImageField(upload_to="recipe_pics", blank=True)
     youtube_url = models.URLField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)

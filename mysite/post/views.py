@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse,get_object_or_404, render, redirect, get_list_or_404
+from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
 from user.models import User
