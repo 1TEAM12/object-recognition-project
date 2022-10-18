@@ -11,7 +11,7 @@
     <div class="grid-sizer"></div>
     {% for post in posts %}
     <div class="grid-item">
-      <img class="img-responsive" alt="" src="{{ post.image.url }}">
+      <img class="img-responsive" src="{{ post.image.url }}">
       <a href="{% url 'post:post-detail' post.id%}" class="project-description">
         <div class="project-text-holder">
           <div class="project-text-inner">
