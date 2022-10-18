@@ -228,3 +228,51 @@ footer p a .fa-github {
   width: 612px;
   
 }
+
+
+.google__btn,
+.github__btn {
+  display: block;
+  width: 90%;
+  max-width: 680px;
+  margin: 20px auto;
+  height: 50px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 8px;
+  border: none;
+  line-height: 40px;
+}
+.google__btn.google__btn,
+.github__btn.google__btn {
+  background: #ffe500;
+  color: #1a1a1c;
+  box-shadow: 0 15px 30px rgba(255, 255, 0, 0.36);
+  transition: 0.2s linear;
+}
+.google__btn.google__btn .fa,
+.github__btn.google__btn .fa {
+  font-size: 20px;
+  padding: 0 5px 0 0;
+}
+.google__btn.google__btn:hover,
+.github__btn.google__btn:hover {
+  box-shadow: 0 0 0 rgba(91, 144, 240, 0);
+}
+.google__btn.github__btn,
+.github__btn.github__btn {
+  background: #25282d;
+  color: #1a1a1c;
+  box-shadow: 0 15px 30px rgba(37, 40, 45, 0.36);
+  transition: 0.2s linear;
+}
+.google__btn.github__btn .fa,
+.github__btn.github__btn .fa {
+  font-size: 20px;
+  padding: 0 5px 0 0;
+}
+.google__btn.github__btn:hover,
+.github__btn.github__btn:hover {
+  box-shadow: 0 0 0 rgba(37, 40, 45, 0);
+}

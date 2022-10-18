@@ -5,7 +5,6 @@ from user.models import User
 
 # Create your views here.
 
-@login_required(login_url='user:signin')
 def index(request):
     if request.method == 'GET':
         context = dict()
