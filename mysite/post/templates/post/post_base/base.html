@@ -55,10 +55,10 @@
           <ul class="nav">
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'post:my-list' user.id %}" title="">MyFruit</a></li>
-            <li><a href="{% url 'post:post-create' %}" title="">FruitCreate</a></li>
-            <li><a href="#" title="">Contact</a></li>
-            <li><a href="#" title="">Components</a></li>
+            <li><a href="{% url 'post:my-list' user.id %}" title="">MyDesset</a></li>
+            <li><a href="{% url 'post:post-create' %}" title="">DessertCreate</a></li>
+            <li><a href="{% url 'post:like-list' user.id %}" title="">DessertLike</a></li>
+            <li><a href="#" title="">RecipeLike</a></li>
             {% endif %}
             {% if user.is_authenticated %}
             <li><a href="{% url 'user:logout' %}">Logout</a></li>

@@ -1,0 +1,26 @@
+{% extends "../post_base/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Sparkling Coffee Club | {{ username }}의 게시글 좋아요 리스트 </title>
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+{% if liked_posts %}
+  <div class="col-xs-12 section-container-spacer">
+    <h3>DessertLike</h3>
+  </div>
+  {% for post in liked_posts %}
+  <div class="col-xs-12 col-md-4 section-container-spacer">
+    <img class="img-responsive" alt="" src="{{ post.image.url }}" width="50%">
+    <h2>{{post.title}}</h2>
+    <p>{{post.content | safe}}</p>
+    <a href="{% url 'post:post-detail' post.id%}" class="btn btn-primary" title="">View Dessert</a>
+  </div>
+  {% endfor %}
+{% else %}
+<h1>게시글 없음</h1>
+{% endif %}
+{% endblock content %}
+
