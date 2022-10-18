@@ -71,3 +71,10 @@ def comment_create(request, comment_id):
         content = request.POST.get('content')
         Comment.objects.create(content=content, author=user, post=post)
         return redirect('post:post-detail', post.id)
+
+@login_required(login_url='user:signin')
+def comment_delete(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    current_post = comment.post.id
+    comment.delete()
+    return redirect('post:post-detail', current_post)

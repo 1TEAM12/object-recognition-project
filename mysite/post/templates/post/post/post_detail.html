@@ -25,15 +25,14 @@
                         <div style='margin:10px 20px;'>
                             {% for comment in post.comments.all %}
                             <div>
-                                <span class="user_id">{{ comment.author.username }}</span>{{ comment.content }}
+                                <span class="user_id">{{ comment.author.username }}</span>
+                                <br>{{ comment.content }}
                                 <div class="time">{{ comment.created_at }}</div>
                                 {% if user == comment.author %}
-                                    <li>
-                                        <a href="#">수정</a>
-                                    </li>    
-                                    <li>
-                                        <a href="#">삭제</a>
-                                    </li>
+                                    
+                                    <a href="#">수정</a>
+                                    <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
+                                
                                     {% endif %}    
                             </div>
                             {% endfor %}
