@@ -1,12 +1,8 @@
-<!-- {% extends "../post_base/base.html" %} -->
+{% extends "../post_base/base.html" %}
 {% load static %}
 
 {% block title %}
-{% if post %}
-{{user.username}} 피드 수정
-{% else %}
-새 피드 작성
-{% endif %} | Sparkling Coffee Club
+<title>Sparkling Coffee Club | {{user.username}} 게시글 수정 </title>
 {% endblock title %}
 
 {% block content %}
@@ -31,20 +27,32 @@
                     </div>
                 </div>
                 <p>
-                <input name="image" type="file" onchange="alert(this.value)">   
-                    {% for error in form.image.errors %}
-                <div class="error-message">{{ error }}</div>
-                {% endfor%}
+                {% comment %} <input name="image" type="file" onchange="alert(this.value)">{% endcomment %}
+                <input name="image" type="file" value="{{ post.image.url }}">
                 </p>
                 <p>
-                    <textarea name="content">{{post.content}}</textarea>
-                    {% for error in form.title.errors %}
-                <div class="error-message">{{ error }}</div>
-                {% endfor%}
+                    <textarea name="content" id='summernote'>{{post.content}}</textarea>
                 </p>
                 <button class="submit_btn" type="submit">저장</button>
             </form>
         </div>
     </div>
 </section>
+
+<script>
+    $('#summernote').summernote({
+      placeholder: '내용을 입력해주세요',
+      tabsize: 2,
+      height: 120,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+      ]
+    });
+  </script>
 {% endblock content %}

@@ -1,6 +1,6 @@
 {% extends "../post_base/base.html" %}
-
 {% load static %}
+
 {% block title %}
     <title>Sparkling Coffee Club | {{ post.title }}</title>
 {% endblock title %}
@@ -23,6 +23,8 @@
                     
                     <div style='background-color:white; height: 540px; max-height: 540px;'>
                         <div style='margin:10px 20px;'>
+
+                            {{ post.content | safe }}
                             {% for comment in post.comments.all %}
                             <div>
                                 <span class="user_id">{{ comment.author.username }}</span>
@@ -34,13 +36,16 @@
                                 {% endif %}    
                             </div>
                             {% endfor %}
-                            
+
                         </div>
                     </div>
+                    {% if request.user == post.author %}
+                    <a href="{% url 'post:post-update' post.id %}">수정</a>
+                    <a href="{% url 'post:post-delete' post.id %}">삭제</a>
+                    {% endif %}
                     <div style='display:flex; align-items: center;'>
                         <div style='cursor:pointer; padding:8px;'><a><img src="{% static './assets/like_empty.png'%}"/></a></div>
                         <div style='font-size:14px; padding:8px 8px 8px 4px; '>좋아요</div>
-                        
                     </div>
                     <form
                     action="{% url 'post:comment-create' post.id %}"
