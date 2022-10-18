@@ -88,10 +88,8 @@ def comment_create(request, comment_id):
 def comment_update(request, comment_id):
     if request.method == 'GET':
         comment = get_object_or_404(Comment,id=comment_id)
-        if request.user == comment.id:
-            context={'comment':comment}
-            return render(request, 'post/post/comment_update_form.html', context=context)
-        return redirect(request.META['HTTP_REFERER'])
+        context={'comment':comment}
+        return render(request, 'post/post/comment_update_form.html', context=context)
 
     elif request.method == 'POST':
         update_comment = Comment.objects.get(id=comment_id)

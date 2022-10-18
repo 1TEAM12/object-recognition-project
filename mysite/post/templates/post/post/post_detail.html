@@ -31,6 +31,7 @@
                                 <br>{{ comment.content }}
                                 <div class="time">{{ comment.created_at }}</div>
                                 {% if user == comment.author %}
+                                
                                     <a href="{% url 'post:comment-update' comment.id %}">수정</a>
                                     <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
                                 {% endif %}    
