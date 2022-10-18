@@ -11,6 +11,8 @@ urlpatterns = [
     path('post/mylist/<int:user_id>/', views.my_list, name='my-list'),
     path('post/create/', views.create, name='create'),
     path('post/update/<int:post_id>/', views.update, name='update'),
+    path('post/likes/<int:post_id>/', views.likes, name='post-likes'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media루트 경로를 설정

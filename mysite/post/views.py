@@ -59,3 +59,17 @@ def update(request, post_id):
 
 def delete(request, post_id):
     pass
+
+
+
+@login_required(login_url='user:signin')
+def likes(request, post_id):
+    if request.method == 'POST':
+        post = Post.objects.get(id=post_id)
+        
+    if post.like_authors.filter(id=request.user.id).exists():
+        post.like_authors.remove(request.user)
+        
+    else:
+        post.like_authors.add(request.user)
+    return redirect(request.META['HTTP_REFERER'])
