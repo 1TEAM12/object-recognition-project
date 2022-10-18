@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    <title>Sparkling Coffee Club | 게시글 생성 </title>
+<title>Sparkling Coffee Club | {{ username }}게시글 생성 </title>
 {% endblock title %}
 
 {% block content %}
@@ -27,14 +27,31 @@
                     </div>
                 </div>
                 <p>
-                <input name="image" type="file">   
+                <input name="image" type="file">  
                 </p>
                 <p>
-                    <textarea name="content"></textarea>
+                    <textarea name="content" id="summernote"></textarea>
                 </p>
                 <button class="submit_btn" type="submit">저장</button>
             </form>
         </div>
     </div>
 </section>
+
+<script>
+    $('#summernote').summernote({
+      placeholder: '내용을 입력해주세요',
+      tabsize: 2,
+      height: 120,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+      ]
+    });
+  </script>
 {% endblock content %}
