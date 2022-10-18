@@ -37,5 +37,16 @@
         Sign In
     </button>
     </form>
+    <!-- separator -->
+    <div class="separator">
+        <p>OR</p>
+    </div>
+    <!-- kakao login -->
+    <a href="{% url 'user:kakao-login' %}" style='text-decoration:none;'>
+    <button class="google__btn">
+        <i class="fa fa-comment"></i>
+        Sign in with Kakao
+    </button>
+    </a>
 </div>
 {% endblock content %}

@@ -7,4 +7,6 @@ urlpatterns = [
     path('account/signup/', views.signup, name='signup'),
     path('account/signin/', views.signin, name='signin'),
     path('account/logout/', views.logout, name='logout'), 
+    path('account/login/kakao/', views.kakao_social_login, name='kakao-login'),
+    path('account/login/kakao/callback/', views.kakao_social_login_callback, name='kakao-login-callback'),
 ]

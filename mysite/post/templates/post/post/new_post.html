@@ -1,0 +1,17 @@
+{% extends "../post_base/base.html" %}
+
+{% load static %}
+{% block title %} <title>Sparkling Coffee Club| 게시글 생성</title> {% endblock title%}
+
+<!-- Add your site or app content here -->
+
+{% block content %}
+    <form class="post_form" method="post" autocomplete="off" enctype="multipart/form-data" >{% csrf_token %}
+        <canvas id="imageCanvas"></canvas><p />                
+        <input type="file" name="image" id="id_photo" required="required" value='image'><p />
+        <input name="title" id="text_field" value='content' cols="50" rows="5" placeholder="write a title" /> <p />
+        <button class="submit_btn" type="submit">저장</button>
+    </form>
+{% endblock content %}
+
+
