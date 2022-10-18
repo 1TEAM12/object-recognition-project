@@ -8,49 +8,83 @@
 {% block content %}
     <div class="row">
         <div class="col-xs-12 col-md-8">
+            <div style='display:flex; max-width:1100px;'>
+                <div style='width:600px; max-height:654px; border: solid 1px rgb(219,219,219); border-radius: 8px;'>
+                    <div class="section-container-spacer" style='display:flex; justify-content: space-between; height:54px; '>
+                        <div style='font-size:25px; margin: 5px 0px 0px 10px;'>{{ post.title }}</div>
+                        <!--<div style='font-size:25px'><p>{{ post.author.username }}</p></div>-->
+                        <div style='font-size:25px; padding: 5px 10px 0px 0px; height: 54px; border-bottom: 1px solid rgb(219, 219, 219);'>{{ post.author.username }}</div>
+                    </div>
+                    <div class="section-container-spacer">
+                        <div><img class="img-responsive" alt="" src="{{ post.image.url }}"></div>
+                    </div>
+                </div>
+                <div style='width:500px;  border: solid 1px rgb(219,219,219); border-radius: 8px; max-height:654px;'>
+                    
+                    <div style='background-color:white; height: 540px; max-height: 540px;'>
+                        <div style='margin:10px 20px;'>
+                            <p>안녕</p>
+                            <p>안녕</p>
+                            <p>안녕</p>
+                            <p>안녕</p>
+                            <p>안녕</p>
+                            
+                        </div>
+                    </div>
+                    <div style='display:flex; align-items: center;'>
+                        <div style='cursor:pointer; padding:8px;'><a><img src="{% static './assets/like_empty.png'%}"/></a></div>
+                        <div style='font-size:14px; padding:8px 8px 8px 4px; '>좋아요</div>
+                        
+                    </div>
+                    <div style="display:flex;  height: 60px; font-size : 13px;  align-items: center; border-top: 1px solid rgb(219, 219, 219);padding: 4px 16px 4px 12px; ">                       
+                        <div style="margin:10px; width:100%;">
+                            <input type="text" name='content' placeholder="댓글 달기 ..." style ="border:none; float:left; width:100%;" />
+                        </div>
+                        <button type="submit"style="width: 55px; border:none; background:none; float:right; font-size:16px; color:cornflowerblue;">
+                            게시
+                        </button>
+                    </div>
 
-            <div class="section-container-spacer">
-                <h1>{{ post.title }}</h1>
-                <h2>{{ post.author.username }}</h2>
-            </div>
-            <div class="section-container-spacer">
-                <p><img class="img-responsive" alt="" src="{{ post.image.url }}" style="max_width:150px;" ></p>
-            </div>
 
+                </div>
+            </div>
             <h3>Dessert Recommend</h3>
-            <div class="grid-item">
-                <img class="img-responsive" alt="" src="{{ post.image.url }}">
-                <a href="#" class="project-description">
-                    <div class="project-text-holder">
-                        <div class="project-text-inner">
-                            <h5>음식 레시피 이름</h5>
-                            <p>Recipe More</p>
+            <div style='display: flex; max-width:1100px;'>
+                <div class="grid-item">
+                    <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                    <a href="#" class="project-description">
+                        <div class="project-text-holder">
+                            <div class="project-text-inner">
+                                <h5>음식 레시피 이름</h5>
+                                <p>Recipe More</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="grid-item">
-                <img class="img-responsive" alt="" src="{{ post.image.url }}">
-                <a href="#" class="project-description">
-                    <div class="project-text-holder">
-                        <div class="project-text-inner">
-                            <h5>음식 레시피 이름</h5>
-                            <p>Recipe More</p>
+                    </a>
+                </div>
+            
+                <div class="grid-item" >
+                    <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                    <a href="#" class="project-description">
+                        <div class="project-text-holder">
+                            <div class="project-text-inner">
+                                <h5>음식 레시피 이름</h5>
+                                <p>Recipe More</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="grid-item">
-                <img class="img-responsive" alt="" src="{{ post.image.url }}">
-                <a href="#" class="project-description">
-                    <div class="project-text-holder">
-                        <div class="project-text-inner">
-                            <h5>음식 레시피 이름</h5>
-                            <p>Recipe More</p>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                    <a href="#" class="project-description">
+                        <div class="project-text-holder">
+                            <div class="project-text-inner">
+                                <h5>음식 레시피 이름</h5>
+                                <p>Recipe More</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            </div>    
         </div>
     </div>
 {% endblock content %}
