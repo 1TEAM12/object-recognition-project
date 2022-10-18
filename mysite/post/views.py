@@ -73,6 +73,19 @@ def comment_create(request, comment_id):
         return redirect('post:post-detail', post.id)
 
 @login_required(login_url='user:signin')
+def comment_update(request, comment_id):
+    if request.method == 'GET':
+        comment = get_object_or_404(Comment,id=comment_id)
+        context={'comment':comment}
+        return render(request, 'post/post/comment_update_form.html', context=context)
+    elif request.method == 'POST':
+        update_comment = Comment.objects.get(id=comment_id)
+        post_id = update_comment.post.id
+        update_comment.content = request.POST.get('content')
+        update_comment.save()
+        return redirect('/post/detail/'+str(post_id))
+
+@login_required(login_url='user:signin')
 def comment_delete(request, comment_id):
     comment = Comment.objects.get(id=comment_id)
     current_post = comment.post.id
