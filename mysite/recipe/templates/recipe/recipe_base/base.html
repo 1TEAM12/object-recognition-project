@@ -24,9 +24,8 @@
 {% block title %}{% endblock title %}
 
 
-<link href="  {% static 'css/main.82cfd66e.css'%}" rel="stylesheet">
-<link href=" {% static 'css/post_detail.css'%}" rel='stylesheet'>
-</head>
+<link href="  {% static 'css/main.82cfd66e.css'%}" rel="stylesheet"></head>
+
 <body>
 
     <!-- Add your content of header -->
@@ -59,7 +58,7 @@
             <li><a href="{% url 'post:my-list' user.id %}" title="">MyDesset</a></li>
             <li><a href="{% url 'post:post-create' %}" title="">DessertCreate</a></li>
             <li><a href="{% url 'post:like-list' user.id %}" title="">DessertLike</a></li>
-            <li><a href="{% url 'recipe:recipe-like-list' user.id %}" title="">RecipeLike</a></li>
+            <li><a href="{% url 'recipe:recipe-like-list' user.id%}" title="">RecipeLike</a></li>
             {% endif %}
             {% if user.is_authenticated %}
             <li><a href="{% url 'user:logout' %}">Logout</a></li>
