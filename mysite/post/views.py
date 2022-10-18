@@ -1,6 +1,6 @@
 from django.shortcuts import HttpResponse,get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Post
+from .models import Post, Comment
 from user.models import User
 
 # Create your views here.
@@ -17,6 +17,7 @@ def post_detail(request, post_id):
     if request.method == 'GET':
         context = dict()
         context['post'] = Post.objects.get(id=post_id)
+        context['comment'] = Comment.objects.filter(post_id=post_id).order_by('-created_at')
         return render(request, 'post/post/post_detail.html', context=context)
     
 @login_required(login_url='user:signin')
@@ -59,3 +60,14 @@ def update(request, post_id):
 
 def delete(request, post_id):
     pass
+
+
+# comment
+@login_required(login_url='user:signin')
+def comment_create(request, comment_id):
+    if request.method == 'POST':
+        user = request.user
+        post = Post.objects.get(id=comment_id)
+        content = request.POST.get('content')
+        Comment.objects.create(content=content, author=user, post=post)
+        return redirect('post:post-detail', post.id)
