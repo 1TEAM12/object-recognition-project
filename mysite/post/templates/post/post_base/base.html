@@ -13,7 +13,7 @@
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
   <link href="  {% static 'assets/apple-icon-180x180.png'%}" rel="apple-touch-icon">
-  <link href="  {% static 'assets/favicon.ico'%}" rel="icon">
+  <link href="  {% static 'assets/favicon.ico'%}" rel="shortcut icon">
 
 
 {% block title %}{% endblock title %}
@@ -43,16 +43,18 @@
                 Sparkling Coffee Club
               </a>
             <p>디저트를 추천해주는 서비스</p>
+            {% if user.is_authenticated%}
             <p>{{user.username }}님 환영합니다.
+            {% endif %}
           </div>
           <ul class="nav">
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
-            {% comment %} 
-            <li><a href="{% url 'post:my-list' user.id%}" title="">MyFruit</a></li>
-            {% endcomment %}
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'post:my-list' user.id %}" title="">MyFruit</a></li>
             <li><a href="#" title="">FruitCreate</a></li>
             <li><a href="#" title="">Contact</a></li>
             <li><a href="#" title="">Components</a></li>
+            {% endif %}
             {% if user.is_authenticated %}
             <li><a href="{% url 'user:logout' %}">Logout</a></li>
             {% else %}
