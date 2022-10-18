@@ -5,6 +5,7 @@
 <!-- Add your site or app content here -->
 {% block content %}
 <h3>Home</h3>
+{% if post %}
 <div class="hero-full-wrapper">
   <div class="grid">
   <div class="gutter-sizer"></div>
@@ -25,4 +26,7 @@
     {% endfor %}
   </div>
 </div>
+{% else %}
+<h1>게시글 없음</h1>
+{% endif %}
 {% endblock content %}

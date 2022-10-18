@@ -1,6 +1,6 @@
 {% extends "../post_base/base.html" %}
-
 {% load static %}
+
 {% block title %}
     <title>Sparkling Coffee Club | {{ post.title }}</title>
 {% endblock title %}
@@ -23,15 +23,29 @@
                     
                     <div style='background-color:white; height: 540px; max-height: 540px;'>
                         <div style='margin:10px 20px;'>
-                            <p>안녕</p>
-                            <p>안녕</p>
-                            <p>안녕</p>
-                            <p>안녕</p>
-                            <p>안녕</p>
-                            
+
+                            {{ post.content | safe }}
+                            {% for comment in post.comments.all %}
+                            <div>
+                                <span class="user_id">{{ comment.author.username }}</span>
+                                <br>{{ comment.content }}
+                                <div class="time">{{ comment.created_at }}</div>
+                                {% if user == comment.author %}
+                                    <a href="{% url 'post:comment-update' comment.id %}">수정</a>
+                                    <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
+                                {% endif %}    
+                            </div>
+                            {% endfor %}
+
                         </div>
                     </div>
 
+
+                    {% if request.user == post.author %}
+                    <a href="{% url 'post:post-update' post.id %}">수정</a>
+                    <a href="{% url 'post:post-delete' post.id %}">삭제</a>
+                    {% endif %}
+                    
                     <form action='{% url 'post:post-likes' post.id %}' method='post'>
                         {% csrf_token %}
                         <div style='display:flex; align-items: center;'>
@@ -45,15 +59,21 @@
                         
                         </div>
                     </form>
+                    
+                    <form
+                    action="{% url 'post:comment-create' post.id %}"
+                    method="post">
+                        {% csrf_token %}
+                        <div style="display:flex;  height: 60px; font-size : 13px;  align-items: center; border-top: 1px solid rgb(219, 219, 219);padding: 4px 16px 4px 12px; ">                       
+                            <div style="margin:10px; width:100%;">
+                                <input type="text" name='content' placeholder="댓글 달기 ..." style ="border:none; float:left; width:100%;" />
+                            </div>
+                            <button type="submit"style="width: 55px; border:none; background:none; float:right; font-size:16px; color:cornflowerblue;">
+                                게시
+                            </button>
 
-                    <div style="display:flex;  height: 60px; font-size : 13px;  align-items: center; border-top: 1px solid rgb(219, 219, 219);padding: 4px 16px 4px 12px; ">                       
-                        <div style="margin:10px; width:100%;">
-                            <input type="text" name='content' placeholder="댓글 달기 ..." style ="border:none; float:left; width:100%;" />
                         </div>
-                        <button type="submit"style="width: 55px; border:none; background:none; float:right; font-size:16px; color:cornflowerblue;">
-                            게시
-                        </button>
-                    </div>
+                    </form>
 
 
                 </div>
