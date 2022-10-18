@@ -1,12 +1,8 @@
-<!-- {% extends "../post_base/base.html" %} -->
+{% extends "../post_base/base.html" %}
 {% load static %}
 
 {% block title %}
-{% if post %}
-{{user.username}} 피드 수정
-{% else %}
-새 피드 작성
-{% endif %} | Sparkling Coffee Club
+    <title>Sparkling Coffee Club | 게시글 생성 </title>
 {% endblock title %}
 
 {% block content %}
@@ -32,15 +28,9 @@
                 </div>
                 <p>
                 <input name="image" type="file">   
-                    {% for error in form.image.errors %}
-                <div class="error-message">{{ error }}</div>
-                {% endfor%}
                 </p>
                 <p>
                     <textarea name="content"></textarea>
-                    {% for error in form.title.errors %}
-                <div class="error-message">{{ error }}</div>
-                {% endfor%}
                 </p>
                 <button class="submit_btn" type="submit">저장</button>
             </form>

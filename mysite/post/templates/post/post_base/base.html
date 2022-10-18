@@ -51,7 +51,7 @@
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'post:my-list' user.id %}" title="">MyFruit</a></li>
-            <li><a href="#" title="">FruitCreate</a></li>
+            <li><a href="{% url 'post:post-create' %}" title="">FruitCreate</a></li>
             <li><a href="#" title="">Contact</a></li>
             <li><a href="#" title="">Components</a></li>
             {% endif %}
