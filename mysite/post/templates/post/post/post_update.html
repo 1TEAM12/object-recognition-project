@@ -1,0 +1,50 @@
+<!-- {% extends "../post_base/base.html" %} -->
+{% load static %}
+
+{% block title %}
+{% if post %}
+{{user.username}} 피드 수정
+{% else %}
+새 피드 작성
+{% endif %} | Sparkling Coffee Club
+{% endblock title %}
+
+{% block content %}
+<section id="container">
+    <div id="main_container">
+        <div class="post_form_container">
+            <form class="post_form" method="post" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="title">
+                    <input name="title" type="text" value='{{post.title}}'>
+                </div>
+                <div class="preview">
+                    <div class="upload">
+                        <div class="post_btn">
+                            <div class="plus_icon">
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>게시글 이미지 추가</p>
+                            <canvas id="imageCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                <input name="image" type="file" onchange="alert(this.value)">   
+                    {% for error in form.image.errors %}
+                <div class="error-message">{{ error }}</div>
+                {% endfor%}
+                </p>
+                <p>
+                    <textarea name="content">{{post.content}}</textarea>
+                    {% for error in form.title.errors %}
+                <div class="error-message">{{ error }}</div>
+                {% endfor%}
+                </p>
+                <button class="submit_btn" type="submit">저장</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}
