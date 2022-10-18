@@ -10,7 +10,7 @@
         <div class="col-xs-12 col-md-8">
             <div style='display:flex; max-width:1100px;'>
                 <div style='width:600px; max-height:654px; border: solid 1px rgb(219,219,219); border-radius: 8px;'>
-                    <div class="section-container-spacer" style='display:flex; justify-content: space-between; height:54px; '>
+                    <div class="section-container-spacer" style='display:flex; justify-content: space-between; height:54px;'>
                         <div style='font-size:25px; margin: 5px 0px 0px 10px;'>{{ post.title }}</div>
                         <!--<div style='font-size:25px'><p>{{ post.author.username }}</p></div>-->
                         <div style='font-size:25px; padding: 5px 10px 0px 0px; height: 54px; border-bottom: 1px solid rgb(219, 219, 219);'>{{ post.author.username }}</div>
@@ -39,14 +39,27 @@
 
                         </div>
                     </div>
+
+
                     {% if request.user == post.author %}
                     <a href="{% url 'post:post-update' post.id %}">수정</a>
                     <a href="{% url 'post:post-delete' post.id %}">삭제</a>
                     {% endif %}
-                    <div style='display:flex; align-items: center;'>
-                        <div style='cursor:pointer; padding:8px;'><a><img src="{% static './assets/like_empty.png'%}"/></a></div>
-                        <div style='font-size:14px; padding:8px 8px 8px 4px; '>좋아요</div>
-                    </div>
+                    
+                    <form action='{% url 'post:post-likes' post.id %}' method='post'>
+                        {% csrf_token %}
+                        <div style='display:flex; align-items: center;'>
+                            
+                            {% if user in post.like_authors.all %}
+                                <div style='cursor:pointer; padding:8px;'><button style='border:0; outline:0; background-color: transparent;'><img src="{% static './assets/like.png'%}"/></button></div>
+                            {% else %}
+                            <div style='cursor:pointer; padding:8px;'><button style='border:0; outline:0; background-color: transparent;'><img src="{% static './assets/like_empty.png'%}"/></button></div>
+                            {% endif %}
+                            <div style='font-size:14px; padding:8px 8px 8px 4px; '>좋아요{{post.like_authors.count}}개</div>
+                        
+                        </div>
+                    </form>
+                    
                     <form
                     action="{% url 'post:comment-create' post.id %}"
                     method="post">
@@ -58,6 +71,7 @@
                             <button type="submit"style="width: 55px; border:none; background:none; float:right; font-size:16px; color:cornflowerblue;">
                                 게시
                             </button>
+
                         </div>
                     </form>
 
