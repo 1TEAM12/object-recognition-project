@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user',
     'post',
     'recipe',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,8 @@ BASE_DIR/'static',
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/uploads/'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 STATIC_URL = 'static/'
 

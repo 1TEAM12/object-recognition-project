@@ -24,16 +24,18 @@ def my_list(request, user_id):
     if request.method == 'GET':
         context = dict()
         context['user'] = User.objects.get(id=user_id)
-        context['posts'] = Post.objects.filter(id=user_id)
+        context['posts'] = Post.objects.filter(author=user_id)
         return render(request, 'post/post/post_mylist.html', context=context)
 
-# 게시글 생성, 수정, 삭제
-def create(request):
+# 게시글 생성
+@login_required(login_url='user:signin')
+def post_create(request):
     if request.method == 'GET':
         context = dict()
         context['users'] = User.objects.all()
         context['posts'] = Post.objects.all()
         return render(request,'post/post/post_create.html', context=context)
+    
     elif request.method =='POST':
         post = Post()
         post.title = request.POST.get('title')
@@ -43,19 +45,31 @@ def create(request):
         post.save()
         return redirect('post:post-detail',post_id=post.id)
 
-def update(request, post_id):
+#게시글 수정
+@login_required(login_url='user:signin')
+def post_update(request, post_id):
     if request.method == 'GET':
         post = get_object_or_404(Post,id=post_id)
-        context={'post':post}
-        return render(request,'post/post/post_update.html',context)
-    if request.method == 'POST':
+        if request.user == post.author:
+            context={'post':post}
+            return render(request,'post/post/post_update.html',context)
+        return redirect('/')
+    
+    elif request.method == 'POST':
         post = Post.objects.get(id=post_id)
         post.title = request.POST.get('title')
         post.image = request.FILES.get('image')
         post.content = request.POST.get('content')
         post.save()
-        return redirect('post:index')
+        return redirect('/')
+    
+#게시글 삭제
+@login_required(login_url='user:signin')
+def post_delete(request, post_id):
+        post = get_object_or_404(Post,id=post_id)
+        if request.user == post.author:
+            post.delete()
+            return redirect('/')
+        return redirect(request.META['HTTP_REFERER'])
 
-
-def delete(request, post_id):
-    pass
+        
