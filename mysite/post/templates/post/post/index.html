@@ -10,7 +10,7 @@
   <div class="gutter-sizer"></div>
     <div class="grid-sizer"></div>
     {% for post in posts %}
-    <div class="grid-item">
+    <div class="grid-item" style='display:inline-block'>
       <img class="img-responsive" src="{{ post.image.url }}">
       <a href="{% url 'post:post-detail' post.id%}" class="project-description">
         <div class="project-text-holder">

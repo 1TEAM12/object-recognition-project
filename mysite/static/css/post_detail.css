@@ -1,0 +1,105 @@
+
+.post_detail-feed_box{
+    display:flex; 
+    max-width:1100px;
+}
+
+.post_detail-feed_box-left{
+    width:600px; 
+    max-height:654px; 
+    border: solid 1px rgb(219,219,219); 
+    border-radius: 8px;
+}
+
+.post_detail-feed_box-title_container{
+    display:flex; 
+    justify-content: space-between; 
+    height:54px;
+}
+
+.post_detail-feed_box-title{
+    font-size:25px; 
+    margin: 5px 0px 0px 10px;
+}
+
+.post_detail-feed_box-username{
+    font-size:25px; 
+    padding: 5px 10px 0px 0px; 
+    height: 54px; 
+    border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.post_detail-feed_box-right{
+    width:500px;  
+    border: solid 1px rgb(219,219,219); 
+    border-radius: 8px; 
+    max-height:654px;
+}
+
+.post_detail-feed_box-comment_box{
+    background-color:white; 
+    height: 540px; 
+    max-height: 540px;
+    
+}
+
+.post_detail-feed_box-comment_wrap{
+    margin:10px 20px;
+}
+
+.post_detail-feed_box-like_bar{
+    display: flex; 
+    align-items: center;
+}
+
+.post_detail-feed_box-like_wrap{
+    cursor:pointer; 
+    padding:8px;
+}
+
+.post_detail-feed_box-like_button{
+    border:0; 
+    outline:0; 
+    background-color: transparent;
+}
+
+.post_detaile-feed_box-like_count_text{
+    font-size:14px; 
+    padding:8px 8px 8px 4px;
+}
+
+.post_detaile-feed_box-comment_write_box{
+    display:flex;  
+    height: 60px; 
+    font-size : 13px;  
+    align-items: center; 
+    border-top: 1px solid rgb(219, 219, 219);
+    padding: 4px 16px 4px 12px; 
+}
+
+.post_detaile-feed_box-comment_write_wrap{
+    margin:10px; 
+    width:100%;
+}
+
+.post_detaile-feed_box-input_box{
+    border:none; 
+    float:left; 
+    width:100%;
+    outline:none;
+    font-size: 17px;
+}
+
+.post_detaile-feed_box-comment_button{
+    width: 55px; 
+    border:none; 
+    background:none; 
+    float:right; 
+    font-size:16px; 
+    color:cornflowerblue;
+}
+
+.post_detaile-recommend_box{
+    display: flex; 
+    max-width:1100px;
+}
