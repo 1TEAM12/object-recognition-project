@@ -1,0 +1,77 @@
+#container{
+    /* overflow: hidden; */
+    width: 500px;
+}
+
+
+.post_create-create_box{
+    box-shadow: 0px 1px 10px -3px grey;
+    border-radius: 10px;
+}
+
+.post_create-create_box-title_input{
+    padding-left: 12px;
+    padding-top: 10px;
+    border-radius: 10px 10px 0px 0px;
+    width: 500px;
+    font-size: 17px;
+    outline: none;
+    border: white;
+}
+
+.post_create-create_box-main{
+    overflow: hidden; 
+    border-bottom:white;
+}
+
+.post_create-create_box-upload{
+    display:flex;
+}
+
+.post_create-create_box-post_btn{
+    min-width:218px; 
+    width:218px;
+    height:210px; 
+    border: 1px solid gray; 
+    border-radius:10px; 
+    margin:10px; 
+    overflow:hidden;
+}
+
+.post_creat-create_box-canvas {
+    object-fit:cover; 
+    width:220px; 
+    height:210px;
+}
+
+.post_create-create_box-arrow {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.post_create-create_box-right_load{
+    min-width:218px; 
+    width:218px; 
+    height:210px; 
+    border: 1px solid gray; 
+    border-radius:10px; 
+    margin:10px;
+}
+
+.post_create-create_box-file_pick{
+    display:flex; 
+    justify-content: space-between;
+}
+
+.post_create-create_box-file_pick>div>input:first-child{
+    margin:0px 0px 10px 10px;
+}
+
+.post_create-create_box-save_btn{
+    margin: auto;
+    width: 100%;
+    border-radius: 30px;
+    border: 2px solid #FFCD48;
+    height: 40px;
+    background-color: #FFCD48;
+}
