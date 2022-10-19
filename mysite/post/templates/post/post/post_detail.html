@@ -23,20 +23,18 @@
                     
                     <div style='background-color:white; height: 540px; max-height: 540px;'>
                         <div style='margin:10px 20px;'>
-
                             {{ post.content | safe }}
-                            {% for comment in post.comments.all %}
-                            <div>
-                                <span class="user_id">{{ comment.author.username }}</span>
-                                <br>{{ comment.content }}
-                                <div class="time">{{ comment.created_at }}</div>
-                                {% if user == comment.author %}
-                                    <a href="{% url 'post:comment-update' comment.id %}">수정</a>
-                                    <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
-                                {% endif %}    
-                            </div>
-                            {% endfor %}
-
+                                {% for comment in post.comments.all %}
+                                <div>
+                                    <span class="user_id">{{ comment.author.username }}</span>
+                                    <br>{{ comment.content }}
+                                    <div class="time">{{ comment.created_at }}</div>
+                                    {% if user == comment.author %}
+                                        <a href="{% url 'post:comment-update' comment.id %}">수정</a>
+                                        <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
+                                    {% endif %}    
+                                </div>
+                                {% endfor %}
                         </div>
                     </div>
 
