@@ -1,6 +1,8 @@
 {% extends "../post_base/base.html" %}
 {% load static %}
 
+
+
 {% block title %}
 <title>Sparkling Coffee Club | {{user.username}} 게시글 수정 </title>
 {% endblock title %}
@@ -9,27 +11,20 @@
 <section id="container">
     <div id="main_container">
         <div class="post_form_container">
-            <form class="post_form" method="post" autocomplete="off" enctype="multipart/form-data">
+            <form class="post_form" method="post" autocomplete="off" enctype="multipart/form-data" >
                 {% csrf_token %}
                 <div class="title">
                     <input name="title" type="text" value='{{post.title}}'>
                 </div>
-                <div class="preview">
-                    <div class="upload">
-                        <div class="post_btn">
-                            <div class="plus_icon">
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <p>게시글 이미지 추가</p>
-                            <canvas id="imageCanvas"></canvas>
-                        </div>
-                    </div>
+
+                <div>
+                    <input type='file' onchange="readURL(this);" name = 'image'>
+                    {% if post.image %}
+                    <img id="blah" src="{{ post.image.url }}" alt="image" >
+                    {% else %}
+                    <img id="blah" src="/static/assets/images/default.png" alt="image" >
+                    {% endif %}
                 </div>
-                <p>
-                {% comment %} <input name="image" type="file" onchange="alert(this.value)">{% endcomment %}
-                <input name="image" type="file" value="{{ post.image.url }}">
-                </p>
                 <p>
                     <textarea name="content" id='summernote'>{{post.content}}</textarea>
                 </p>
@@ -40,16 +35,31 @@
 </section>
 
 <script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
     $('#summernote').summernote({
-      placeholder: '내용을 입력해주세요',
-      tabsize: 2,
-      width: 500,
-      height: 120,
-      toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['color', ['color']],
-      ]
+        placeholder: '내용을 입력해주세요',
+        tabsize: 2,
+        width: 500,
+        height: 120,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+        ]
     });
-  </script>
+</script>
 {% endblock content %}
