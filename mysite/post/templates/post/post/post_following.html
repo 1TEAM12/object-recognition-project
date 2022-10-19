@@ -1,0 +1,28 @@
+{% extends "../post_base/base.html" %}
+
+{% load static %}
+{% block title %} 
+<title>Sparkling Coffee Club| FollowingDessert</title> 
+{% endblock title%}
+<!-- Add your site or app content here -->
+{% block content %}
+<h3>FollowingDessert</h3>
+{% if follow_posts %}
+<div class="hero-full-wrapper">
+  <div class="grid">
+  <div class="gutter-sizer"></div>
+    <div class="grid-sizer"></div>
+    {% for post in follow_posts %}
+    <div class="col-xs-12 col-md-4 section-container-spacer">
+      <img class="img-responsive" alt="" src="{{ post.image.url }}" width="50%">
+      <h2>{{post.title}}</h2>
+      <p>{{post.content | safe}}</p>
+      <a href="{% url 'post:post-detail' post.id%}" class="btn btn-primary" title="">View Dessert</a>
+    </div>   
+    {% endfor %}  
+  </div>
+</div>
+{% else %}
+<h1>게시글 없음</h1>
+{% endif %}
+{% endblock content %}
