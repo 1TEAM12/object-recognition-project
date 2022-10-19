@@ -9,4 +9,8 @@ urlpatterns = [
     path('account/logout/', views.logout, name='logout'), 
     path('account/login/kakao/', views.kakao_social_login, name='kakao-login'),
     path('account/login/kakao/callback/', views.kakao_social_login_callback, name='kakao-login-callback'),
+
+    #follow
+    path('user/userlist/', views.userlist, name='userlist'),
+    path('user/follow/<int:id>/', views.follow, name='follow'),
 ]

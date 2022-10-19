@@ -1,11 +1,17 @@
 {% extends "../post_base/base.html" %}
 {% load static %}
+{% block post-update-style%}
+<script>
 
+</script>
+{% endblock %}
 {% block title %}
 <title>Sparkling Coffee Club | {{user.username}} 게시글 수정 </title>
-{% endblock title %}
 
+{% endblock title %}
+<!-- 자바스크립트 추가예정 -->
 {% block content %}
+
 <section id="container">
     <div id="main_container">
         <div class="post_form_container">
@@ -29,6 +35,7 @@
                 <p>
                 {% comment %} <input name="image" type="file" onchange="alert(this.value)">{% endcomment %}
                 <input name="image" type="file" value="{{ post.image.url }}">
+                <!-- <img src="{{ post.image.url }}"> -->
                 </p>
                 <p>
                     <textarea name="content" id='summernote'>{{post.content}}</textarea>

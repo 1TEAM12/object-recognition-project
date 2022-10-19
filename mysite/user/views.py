@@ -151,3 +151,19 @@ def kakao_social_login_callback(request):
         user = User.objects.get(id=kakao_id)
         auth.login(request, user)
     return redirect('/')
+
+@login_required
+def userlist(request):
+    if request.method == 'GET':
+        user_list = User.objects.all().exclude(username=request.user.username)
+        return render(request, 'user/user_list.html',{'user_list':user_list})
+
+@login_required
+def follow(request,id):
+    me = request.user
+    click_user = User.objects.get(id=id)
+    if me in click_user.followee.all():
+        click_user.followee.remove(request.user)
+    else:
+        click_user.followee.add(request.user)
+    return redirect('/user/userlist/')
