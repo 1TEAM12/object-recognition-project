@@ -1,17 +1,19 @@
 {% extends "../post_base/base.html" %}
 
 {% load static %}
-{% block title %} <title>Sparkling Coffee Club| Home</title> {% endblock title%}
+{% block title %} 
+<title>Sparkling Coffee Club| Home</title> 
+{% endblock title%}
 <!-- Add your site or app content here -->
 {% block content %}
 <h3>Home</h3>
-{% if post %}
+{% if posts %}
 <div class="hero-full-wrapper">
   <div class="grid">
   <div class="gutter-sizer"></div>
     <div class="grid-sizer"></div>
     {% for post in posts %}
-    <div class="grid-item">
+    <div class="grid-item" style='display:inline-block'>
       <img class="img-responsive" src="{{ post.image.url }}">
       <a href="{% url 'post:post-detail' post.id%}" class="project-description">
         <div class="project-text-holder">
