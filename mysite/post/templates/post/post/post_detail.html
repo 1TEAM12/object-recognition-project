@@ -11,30 +11,54 @@
             <div  class='post_detail-feed_box'>
                 <div class='post_detail-feed_box-left'>
                     <div class="section-container-spacer post_detail-feed_box-title_container">
-                        <div class='post_detail-feed_box-title'>{{ post.title }}</div>
-                        
-                        <div class='post_detail-feed_box-username'>{{ post.author.username }}</div>
+                        <div class='post_detail-feed_box-title'>{{ post.title }}</div> 
                     </div>
                     <div class="section-container-spacer">
-                        <div><img class="img-responsive" alt="" src="{{ post.image.url }}"></div>
+                        <div class='post_detail-feed_box-img_wrap'>
+                            <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                        </div>
                     </div>
                 </div>
 
                 <div class='post_detail-feed_box-right'>
                     <div class='post_detail-feed_box-comment_box'>
                         <div class='post_detail-feed_box-comment_wrap'>
-
-                            {{ post.content | safe }}
-                            {% for comment in post.comments.all %}
-                            <div>
-                                <span class="user_id">{{ comment.author.username }}</span>
-                                <br>{{ comment.content }}
-                                <div class="time">{{ comment.created_at }}</div>
-                                {% if user == comment.author %}
+                            <div class='post_detail-feed_box-right_top'>
+                                <div>{{ post.author.username }}</div>
+                                {% if request.user == post.author %}
+                                <div class='dropdown'>
+                                    <a><img class='horiz_img' src="{% static './assets/more_horiz.png'%}"/></a>
                                 
-                                    <a href="{% url 'post:comment-update' comment.id %}">수정</a>
-                                    <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
-                                {% endif %}    
+                                        <div class='dropdown-content'>
+                                            <a href="{% url 'post:post-update' post.id %}">수정</a>
+                                            <a href="{% url 'post:post-delete' post.id %}">삭제</a>
+                                        </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        
+                            <div class='post_detail-feed_box-content'>{{ post.content | safe }}</div>
+                            
+                            {% for comment in post.comments.all %}
+                            <div class='post_detail-feed_box-comment_list_wrap'>
+                                <div class="post_detail-feed_box-comment_list">
+                                    <div class="user_id" style='margin-right:15px;'>{{ comment.author.username }}</div>
+                                    <div> {{ comment.content }}</div>
+                                </div>
+                                <div class='post_detail-feed_box-comment_crt'>
+                                    <div class="time">{{ comment.modified_at }}</div>
+
+                                    {% if user == comment.author %}
+                                    <div class='dropdown'>
+                                        <a><img class='horiz_img' src="{% static './assets/more_horiz.png'%}"/></a>
+                                        <div class='dropdown-content'>
+                                            <a href="{% url 'post:comment-update' comment.id %}">수정</a>
+                                            <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
+                                        </div>
+                                    </div>
+                                    {% endif %} 
+
+                                </div>   
                             </div>
                             {% endfor %}
 
@@ -42,10 +66,6 @@
                     </div>
 
 
-                    {% if request.user == post.author %}
-                    <a href="{% url 'post:post-update' post.id %}">수정</a>
-                    <a href="{% url 'post:post-delete' post.id %}">삭제</a>
-                    {% endif %}
                     
                     <form action='{% url 'post:post-likes' post.id %}' method='post'>
                         {% csrf_token %}

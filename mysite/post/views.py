@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect, get_list_or_40
 from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
 from user.models import User
-
+from django.db.models import Q
 # Create your views here.
 
 def index(request):
@@ -126,3 +126,27 @@ def likes_list(request, post_id):
         context['user'] = User.objects.get(id=post_id)
         context['liked_posts'] = get_list_or_404(Post,like_authors=post_id)
         return render(request, 'post/post/post_like_list.html', context=context)
+
+#검색
+@login_required(login_url='user:signin')
+def search(request):
+    post_result = Post.objects.all()
+    keyword = request.GET.get('keyword')
+    if keyword: 
+        post_result = post_result.filter(
+            # Q 함수 OR조건으로 데이터 조회
+            # icontains 대소문자 구분없이 필드에 단어 포함되어 있는지 검사
+            Q(title__icontains=keyword) |
+            Q(content__icontains=keyword)
+        )
+    
+    return render(request, 'post/post/search_results.html', {'search':post_result ,'keyword':keyword})
+
+#팔로우게시물
+@login_required(login_url='user:signin')
+def follow_list(request, post_id):
+   if request. method == 'GET':
+        context = dict()
+        context['user'] = User.objects.get(id=post_id)
+        context['follow_posts'] = get_list_or_404(Post,author__followers=request.user)
+        return render(request, 'post/post/post_following.html', context=context)

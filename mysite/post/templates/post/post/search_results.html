@@ -1,0 +1,23 @@
+{% extends "../post_base/base.html" %}
+
+{% load static %}
+{% block title %} <title>Sparkling Coffee Club| 검색결과</title> {% endblock title%}
+
+{% block content %}
+    <div class="row">
+        {% if search %}
+          <div class="col-xs-12 section-container-spacer">
+            <h3> 검색하신 {{ keyword }} 정보입니다. </h3>
+          </div>
+          {% for post in search %}
+          <div class="col-xs-12 col-md-4 section-container-spacer">
+            <img class="img-responsive" alt="" src="{{ post.image.url }}" width="50%">
+            <h2>{{post.title}}</h2>
+            <p>{{post.content | safe}}</p>
+            <a href="{% url 'post:post-detail' post.id%}" class="btn btn-primary" title="">View Dessert</a>
+          </div>
+          {% endfor %}
+        {% else %}
+        <h1> 찾고 있는 레시피를 검색창에 입력해주세요. </h1>
+        {% endif %}
+{% endblock %}

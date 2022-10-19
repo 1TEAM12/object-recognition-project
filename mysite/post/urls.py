@@ -22,6 +22,12 @@ urlpatterns = [
     #like
     path('post/likes/<int:post_id>/', views.likes, name='post-likes'),
     path('post/likes/list/<int:post_id>/', views.likes_list, name='like-list'),
+
+    #search
+    path('search/', views.search, name='search'),
+
+    #follow
+    path('post/followlist/<int:post_id>/', views.follow_list, name='follow-list'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media루트 경로를 설정
