@@ -12,23 +12,12 @@
             <form class="post_form" method="post" autocomplete="off" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="title">
-                    <input name="title" type="text">
+                    <input name="title" type="text" placeholder="제목을 입력해주세요">
+                </div><br>
+                <div>
+                    <input name="image" type="file" onchange="setThumbnail(event);" >
+                    <div id="image_container"></div>
                 </div>
-                <div class="preview">
-                    <div class="upload">
-                        <div class="post_btn">
-                            <div class="plus_icon">
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <p>게시글 이미지 추가</p>
-                            <canvas id="imageCanvas"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <p>
-                <input name="image" type="file">  
-                </p>
                 <p>
                     <textarea name="content" id="summernote"></textarea>
                 </p>
@@ -39,6 +28,19 @@
 </section>
 
 <script>
+    // 이미지업로드
+    function setThumbnail(event) {
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+          var img = document.createElement("img");
+          img.setAttribute("src", event.target.result);
+          document.querySelector("div#image_container").appendChild(img);
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+      }
+
     $('#summernote').summernote({
       placeholder: '내용을 입력해주세요',
       tabsize: 2,

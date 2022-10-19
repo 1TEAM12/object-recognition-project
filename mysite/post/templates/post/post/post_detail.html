@@ -15,9 +15,15 @@
                         
                         <div class='post_detail-feed_box-username'>{{ post.author.username }}</div>
                     </div>
+                    
                     <div class="section-container-spacer">
+                        {% if post.image %}
                         <div><img class="img-responsive" alt="" src="{{ post.image.url }}"></div>
+                        {% else %}
+                        <div><img class="img-responsive" alt="" src="/static/assets/images/default.png"></div>
+                        {% endif %}
                     </div>
+                    
                 </div>
 
                 <div class='post_detail-feed_box-right'>
@@ -79,20 +85,13 @@
             </div>
             <h3>Dessert Recommend</h3>
             <div class='post_detaile-recommend_box'>
+
                 <div class="grid-item">
-                    <img class="img-responsive" alt="" src="{{ post.image.url }}">
-                    <a href="#" class="project-description">
-                        <div class="project-text-holder">
-                            <div class="project-text-inner">
-                                <h5>음식 레시피 이름</h5>
-                                <p>Recipe More</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            
-                <div class="grid-item" >
-                    <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                    {% if post.image %}
+                        <div><img class="img-responsive" alt="" src="{{ post.image.url }}"></div>
+                    {% else %}
+                        <div><img class="img-responsive" alt="" src="/static/assets/images/default.png"></div>
+                    {% endif %}
                     <a href="#" class="project-description">
                         <div class="project-text-holder">
                             <div class="project-text-inner">
@@ -103,7 +102,26 @@
                     </a>
                 </div>
                 <div class="grid-item">
-                    <img class="img-responsive" alt="" src="{{ post.image.url }}">
+                    {% if post.image %}
+                        <div><img class="img-responsive" alt="" src="{{ post.image.url }}"></div>
+                    {% else %}
+                        <div><img class="img-responsive" alt="" src="/static/assets/images/default.png"></div>
+                    {% endif %}
+                    <a href="#" class="project-description">
+                        <div class="project-text-holder">
+                            <div class="project-text-inner">
+                                <h5>음식 레시피 이름</h5>
+                                <p>Recipe More</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    {% if post.image %}
+                        <div><img class="img-responsive" alt="" src="{{ post.image.url }}"></div>
+                    {% else %}
+                        <div><img class="img-responsive" alt="" src="/static/assets/images/default.png"></div>
+                    {% endif %}
                     <a href="#" class="project-description">
                         <div class="project-text-holder">
                             <div class="project-text-inner">
