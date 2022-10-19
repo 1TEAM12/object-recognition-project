@@ -57,9 +57,6 @@ def post_update(request, post_id):
         return redirect('/')
     
     elif request.method == 'POST':
-        print('아무거나')
-        print(request.POST)
-        print(request.FILES)
         post = Post.objects.get(id=post_id)
         post.title = request.POST.get('title')
         post.image = request.FILES.get('image')
