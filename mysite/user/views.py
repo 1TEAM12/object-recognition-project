@@ -87,7 +87,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/account/signin/')
 
-
+#####카카오 로그인###
 def kakao_social_login(request):
 
     if request.method == 'GET':
@@ -152,6 +152,7 @@ def kakao_social_login_callback(request):
         auth.login(request, user)
     return redirect('/')
 
+#####팔로우#####
 @login_required(login_url='user:signin')
 def user_list(request):
     if request.method == 'GET':
