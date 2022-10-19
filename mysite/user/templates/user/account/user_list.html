@@ -9,8 +9,9 @@
             <div class="card">
                 <div class="card-body">
                     <div>
+                        
                         <h4 class="card-title">{{ user.username }} 님!</h4>
-                        <h5> follower : {{ user.followee.count }} 명 / following : {{ user.follow.count }} 명</h5>
+                        <h5> follower : {{ user.followers.count }} 명 / following : {{ user.followings.count }} 명</h5>
                     </div>
                     <p> 더 많은 사람들을 팔로우해보세요! </p>
                 </div>
@@ -26,9 +27,9 @@
                             <h5 class="card-title">{{ ul.username }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <p class="card-text">
-                                    folloewing {{ ul.follow.count }} 명 / follower {{ ul.followee.count }} 명
+                                    folloewing {{ ul.followings.count }} 명 / follower {{ ul.followers.count }} 명
                                 </p>
-                                {% if ul in user.follow.all %}
+                                {% if ul in user.followings.all %}
                                     <a href="/user/follow/{{ ul.id }}" class="card-link">[팔로우 취소]</a>
                                 {% else %}
                                     <a href="/user/follow/{{ ul.id }}" class="card-link">[팔로우]</a>

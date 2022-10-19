@@ -141,3 +141,12 @@ def search(request):
         )
     
     return render(request, 'post/post/search_results.html', {'search':post_result ,'keyword':keyword})
+
+#팔로우게시물
+@login_required(login_url='user:signin')
+def follow_list(request, post_id):
+   if request. method == 'GET':
+        context = dict()
+        context['user'] = User.objects.get(id=post_id)
+        context['follow_posts'] = get_list_or_404(Post,author__followers=request.user)
+        return render(request, 'post/post/post_following.html', context=context)
