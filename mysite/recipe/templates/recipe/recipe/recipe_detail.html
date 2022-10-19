@@ -1,0 +1,23 @@
+{% extends "../recipe_base/base.html" %}
+
+{% load static %}
+{% block title %} <title>Sparkling Coffee Club| {{ recipe.title }}</title> {% endblock title%}
+<!-- Add your site or app content here -->
+{% block content %}
+<h3>{{recipe.title}}</h3>
+<form action='{% url 'recipe:recipe-likes' recipe.id %}' method='post'>
+    {% csrf_token %}
+    <div style='display:flex; align-items: center;'>
+        {% if user in recipe.like_authors.all %}
+            <div style='cursor:pointer; padding:8px;'><button style='border:0; outline:0; background-color: transparent;'><img src="{% static './assets/like.png'%}"/></button></div>
+        {% else %}
+        <div style='cursor:pointer; padding:8px;'><button style='border:0; outline:0; background-color: transparent;'><img src="{% static './assets/like_empty.png'%}"/></button></div>
+        {% endif %}
+        <div style='font-size:14px; padding:8px 8px 8px 4px; '>좋아요{{recipe.like_authors.count}}개</div>
+    </div>
+</form>
+
+<iframe width="560" height="315" src="{{recipe.youtube_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+{% endblock content %}

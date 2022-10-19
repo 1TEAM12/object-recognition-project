@@ -1,0 +1,22 @@
+{% extends "../recipe_base/base.html" %}
+
+{% load static %}
+{% block title %} <title>Sparkling Coffee Club| {{ user.username }}의 레시피 좋아요 리스트</title> {% endblock title%}
+<!-- Add your site or app content here -->
+{% block content %}
+{% if liked_recipes %}
+  <div class="col-xs-12 section-container-spacer">
+    <h3>RecipeLike</h3>
+  </div>
+  {% for recipe in liked_recipes %}
+  <div class="col-xs-12 col-md-4 section-container-spacer">
+    <img class="img-responsive" alt="" src="{{ recipe.image.url }}" width="50%">
+    <h2>{{recipe.title}}</h2>
+    <a href="{% url 'recipe:recipe-detail' recipe.id%}" class="btn btn-primary" title="">View Recipe</a>
+  </div>
+  {% endfor %}
+{% else %}
+<h1>게시글 없음</h1>
+{% endif %}
+{% endblock content %}
+
