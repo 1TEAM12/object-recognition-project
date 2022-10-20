@@ -87,7 +87,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/account/signin/')
 
-
+#####카카오 로그인###
 def kakao_social_login(request):
 
     if request.method == 'GET':
@@ -151,3 +151,20 @@ def kakao_social_login_callback(request):
         user = User.objects.get(id=kakao_id)
         auth.login(request, user)
     return redirect('/')
+
+#####팔로우#####
+@login_required(login_url='user:signin')
+def user_list(request):
+    if request.method == 'GET':
+        user_list = User.objects.all().exclude(username=request.user.username)
+        return render(request, 'user/account/user_list.html',{'user_list':user_list})
+
+@login_required(login_url='user:signin')
+def process_follow(request, user_id):
+    me = request.user
+    user = User.objects.get(id=user_id)
+    if me in user.followers.all():
+        user.followers.remove(request.user)
+    else:
+        user.followers.add(request.user)
+    return redirect('/user/userlist/')

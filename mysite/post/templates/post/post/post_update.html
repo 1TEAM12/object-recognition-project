@@ -1,11 +1,21 @@
 {% extends "../post_base/base.html" %}
 {% load static %}
+{% block post-update-style%}
+<script>
 
+</script>
+{% endblock %}
 {% block title %}
-<title>Sparkling Coffee Club | {{ user.username }}의 게시글 수정 </title>
-{% endblock title %}
 
+<title>Sparkling Coffee Club | {{ user.username }}의 게시글 수정 </title>
+
+
+
+
+{% endblock title %}
+<!-- 자바스크립트 추가예정 -->
 {% block content %}
+
 <section id="container">
     <div id="main_container">
         <div class="post_form_container">
@@ -42,9 +52,11 @@
                     <div style='margin-top: 22px;'>
                         <button class="post_create-create_box-save_btn" type="submit"><b>저장</b></button>
                     </div>
-                    
+                    {% comment %} <input name="image" type="file" onchange="alert(this.value)">{% endcomment %}
+                <!-- <img src="{{ post.image.url }}"> -->
                 </form>
             </div>
+
         </div>
     </div>
 </section>

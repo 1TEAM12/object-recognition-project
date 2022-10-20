@@ -52,7 +52,11 @@
               </a>
             <p>디저트를 추천해주는 서비스</p>
             {% if user.is_authenticated%}
+
             <p><b>{{user.username }}</b>님 환영합니다.
+         
+            <li><a href="{% url 'user:user-list' %}" title="">Follow</a></li>
+
             {% endif %}
           </div>
           <ul class="nav">
@@ -63,10 +67,11 @@
 
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'post:my-list' user.id %}" title="">MyDesset</a></li>
+            <li><a href="{% url 'post:my-list' user.id %}" title="">MyDessert</a></li>
             <li><a href="{% url 'post:post-create' %}" title="">DessertCreate</a></li>
             <li><a href="{% url 'post:like-list' user.id %}" title="">DessertLike</a></li>
             <li><a href="{% url 'recipe:recipe-like-list' user.id %}" title="">RecipeLike</a></li>
+            <li><a href="{% url 'post:follow-list' user.id %}" title="">FollowingDessert</a></li>
             {% endif %}
             {% if user.is_authenticated %}
             <li><a href="{% url 'user:logout' %}">Logout</a></li>
