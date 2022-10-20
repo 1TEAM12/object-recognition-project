@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
 
-from .models import Post, Comment, TempImg
+from .models import Post, Comment, TempImg, Dessert
 from .img_det import pick_img
 
 from user.models import User
+
+import random
 
 # Create your views here.
 
@@ -45,10 +47,13 @@ def post_create(request):
     elif request.method =='POST':
         post = Post()
         post.title = request.POST.get('title')
-        post.image = request.FILES.get('image')
+        post.image = request.FILES.get('dess_img')
+        post.ingred = request.POST.get('dess_ingred')
+        post.dessert_id = request.POST.get('dess_id')       
         post.content = request.POST.get('content')
         post.author = request.user
         post.save()
+
         return redirect('post:post-detail',post_id=post.id)
 
 #게시글 수정
@@ -163,18 +168,18 @@ def post_detect(request):
         temp_img = TempImg()
         temp_img.image = request.FILES.get('image')
         temp_img.save()
-        
-        # post = Post()
-        # # post.image = request.FILES.get('image')
-        # post.image = request.FILES['image'].read()
-        # print(f"------------------------------------------------{post.image}")
-        # post.author_id = request.user.id
-        # print(f"------------------------------------------------{post.author}")
-        # post.dessert_id = 1
-        
-        # post.save()
-        # post = Post.objects.get(id=post_id)
+
         img_url = temp_img.image
         context = pick_img(request,img_url)
-        # context['image'] = 'temp_img'
+        
+        print(context['picked'])
+        
+        ing_list = Dessert()
+        ing_list = Dessert.objects.filter(ingred=context['picked'])
+        rand_pick = random.choice(ing_list)  
+        context['dess_image'] = rand_pick.image
+        context['dess_id'] = rand_pick.id
+        context['dess_name'] = rand_pick.dessert_name
+        context['dess_ingred'] = rand_pick.ingred
+
         return render(request, 'post/post/post_create.html', context)

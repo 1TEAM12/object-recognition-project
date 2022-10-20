@@ -10,6 +10,9 @@ class Dessert(models.Model):
     image = models.ImageField(upload_to="dessert_pics", blank=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.PROTECT, related_name='recipe_dessert')  
 
+    def __str__(self):
+        return self.dessert_name
+
 class TempImg(models.Model):
     class Meta():
         db_table = 'db_tempimg'
