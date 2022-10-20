@@ -12,7 +12,7 @@ urlpatterns = [
     path('post/mylist/<int:user_id>/', views.my_list, name='my-list'),
     path('post/create/', views.post_create, name='post-create'),
     path('post/update/<int:post_id>/', views.post_update, name='post-update'),
-    path('post/delete/<int:post_id>', views.post_delete, name='post-delete'),
+    path('post/delete/<int:post_id>/', views.post_delete, name='post-delete'),
     
     #comment
     path('comment/create/<int:comment_id>/', views.comment_create, name='comment-create'),
