@@ -26,14 +26,16 @@
                                         <span></span>
                                         <span></span>
                                     </div>
-                                    <canvas class='post_creat-create_box-canvas' id="imageCanvas"></canvas>
+                                    <canvas class='post_creat-create_box-canvas' id="imageCanvas">
+                                        <img src='{{picked.url}}' name="temp_image">
+                                        <input name="temp_image" type="file" onchange="setThumbnail(event);">
+                                        <div id="image_container"></div> 
+                                    </canvas>
                                 </div>
                                 <div class='post_create-create_box-arrow'>
                                     👉
                                 </div>
                                 <div class='post_create-create_box-right_load'>
-                                    <img src="{{dess_image.url}}" style="width:100%;" name="dess_img">
-                                    <input name="image" type="file" onchange="setThumbnail(event);">
                                     <div id="image_container"></div>
                                     <p style="text-align: center;">{{dess_name}}</P>
                                 </div>
@@ -41,11 +43,13 @@
                         </div>
                         <div class='post_create-create_box-file_pick'>
                             <form class="post_form" method="post" action="{% url 'post:post-detect' %}"
-                                autocomplete="off" enctype="multipart/form-data">{% csrf_token %}
+                                autocomplete="off" enctype="multipart/form-data">
+                                {% csrf_token %}
                                 <div>
+                                    <img src="{{dess_image.url}}" style="width:100%;" name="dess_img">
                                     <input id='id_photo' name="image" type="file">
                                 </div>
-
+                                
                                 <button class="post_create-create_box-save_btn" type="submit"><b>디져트 추천</b></button>
                             </form>
                         </div>
@@ -55,6 +59,7 @@
                             <input type="hidden" name="dess_id" value="{{dess_id}}">
                             <input type="hidden" name="dess_ingred" value="{{dess_ingred}}">
                             <input type="hidden" name="dess_image" value="{{dess_image}}">
+                            
                             <div class="title">
                                 <input class='post_create-create_box-title_input' name="title" type="text"
                                     placeholder="제목 입력..." value={{post.title}}>
@@ -68,10 +73,7 @@
                     </div>
                 </div>
                 <div style='margin-top: 22px;'>
-
                 </div>
-
-
             </div>
         </div>
     </div>

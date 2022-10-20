@@ -10,7 +10,8 @@
     <div id="main_container">
         <div class="post_form_container">
             <div>
-                <div class='post_create-create_box' <div class='post_create-create_box-main'>
+                <div class='post_create-create_box'>
+                    <div class='post_create-create_box-main'>
                     <div class="preview">
                         <div class="post_create-create_box-upload">
                             <div class="post_create-create_box-post_btn">
@@ -18,14 +19,19 @@
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <canvas class='post_creat-create_box-canvas' id="imageCanvas"></canvas>
+                                <img src="{{dess_ingred.url}}" style="width:100%;" name="dess_ingred" title="{{dess_ingred}}" >
+                                <!-- <p  style="text-align: center;">{{dess_ingred}} -->
+                                <canvas class='post_creat-create_box-canvas' id="imageCanvas">
+                                </canvas>
+                                <!-- </p> -->
                             </div>
                             <div class='post_create-create_box-arrow'>
                                 👉
                             </div>
                             <div class='post_create-create_box-right_load'>
-                                <img src="{{dess_image.url}}" style="width:100%;" name="dess_img">
+                                <img src="{{dess_image.url}}" style="width:100%;" name="dess_image">
                                 <p style="text-align: center;">{{dess_name}}</P>
+                                
                             </div>
                         </div>
                     </div>
@@ -80,12 +86,6 @@
         ]
     });
 
-
-
-
-
-
-
     var fileInput = document.querySelector("#id_photo"),
         button = document.querySelector(".input-file-trigger"),
         the_return = document.querySelector(".file-return");
@@ -106,6 +106,8 @@
         };
         reader.readAsDataURL(e.target.files[0]);
     }
+
+
 
 </script>
 {% endblock content %}
