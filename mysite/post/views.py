@@ -175,7 +175,9 @@ def follow_list(request, post_id):
 def post_detect(request):
     if request.method == "POST":
         temp_img = TempImg()
-        temp_img.image = request.POST.get('image')
+        temp_img.image = request.FILES.get('before_image')
+        # temp_img.image = request.POST['before_image']
+        print(temp_img.image)
         temp_img.save()
         print(temp_img.image)
         
