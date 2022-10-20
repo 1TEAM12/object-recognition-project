@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Recipe
-from user.models import User
+
 # Create your views here.
 @login_required(login_url='user:signin')
 def recipe_detail(request, recipe_id):
@@ -21,7 +21,6 @@ def recipe_like_list(request, recipe_id):
 def likes(request, recipe_id):
     if request.method == 'POST':
         recipe = Recipe.objects.get(id=recipe_id)
-        
     if recipe.like_authors.filter(id=request.user.id).exists():
         recipe.like_authors.remove(request.user)
     else:

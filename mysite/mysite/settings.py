@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'user',
     'post',
     'recipe',
+    'notification',
     'django_summernote',
 ]
 

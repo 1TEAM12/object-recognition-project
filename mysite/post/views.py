@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
 from user.models import User
 from django.db.models import Q
+from notification.utilities import create_notification
 # Create your views here.
 
 def index(request):
@@ -81,6 +82,7 @@ def comment_create(request, comment_id):
         post = Post.objects.get(id=comment_id)
         content = request.POST.get('content')
         Comment.objects.create(content=content, author=user, post=post)
+        create_notification(request, user, 'comment', post)
         return redirect('post:post-detail', post.id)
 
 #댓글 수정
@@ -110,12 +112,14 @@ def comment_delete(request, comment_id):
 @login_required(login_url='user:signin')
 def likes(request, post_id):
     if request.method == 'POST':
+        user = User.objects.get(id=request.user.id)
         post = Post.objects.get(id=post_id)
-        
     if post.like_authors.filter(id=request.user.id).exists():
         post.like_authors.remove(request.user)
     else:
         post.like_authors.add(request.user)
+        create_notification(request, user, 'post_like', post)
+        
     return redirect(request.META['HTTP_REFERER'])
 
 #좋아요 리스트
@@ -128,7 +132,6 @@ def likes_list(request, post_id):
         return render(request, 'post/post/post_like_list.html', context=context)
 
 #검색
-@login_required(login_url='user:signin')
 def search(request):
     post_result = Post.objects.all()
     keyword = request.GET.get('keyword')
@@ -145,7 +148,7 @@ def search(request):
 #팔로우게시물
 @login_required(login_url='user:signin')
 def follow_list(request, post_id):
-   if request. method == 'GET':
+    if request. method == 'GET':
         context = dict()
         context['user'] = User.objects.get(id=post_id)
         context['follow_posts'] = get_list_or_404(Post,author__followers=request.user)
