@@ -49,7 +49,7 @@ def post_create(request):
     elif request.method =='POST':
         post = Post()
         post.title = request.POST.get('title')
-        post.image = request.FILES.get('dess_img')
+        post.image = request.POST.get('dess_image')
         post.ingred = request.POST.get('dess_ingred')
         post.dessert_id = request.POST.get('dess_id')       
         post.content = request.POST.get('content')
