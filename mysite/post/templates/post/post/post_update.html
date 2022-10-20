@@ -10,104 +10,119 @@
 <title>Sparkling Coffee Club | {{ user.username }}의 게시글 수정 </title>
 
 
-
-
 {% endblock title %}
-<!-- 자바스크립트 추가예정 -->
-{% block content %}
 
+{% block content %}
 <section id="container">
     <div id="main_container">
         <div class="post_form_container">
             <div>
-                <form class="post_form" method="post" autocomplete="off" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class='post_create-create_box'>
-                            {% comment %} <div class="title">
-                                <input name="title" class='post_update-create_title' placeholder="제목 입력..." type="text" value='{{post.title}}'>
-                            </div> {% endcomment %}
-                        <div class='post_create-create_box-main'>
-                            <div class="preview">
-                                <div class="post_create-create_box-upload">
-                                    <div class="post_create-create_box-post_btn">
-                                            <div class="plus_icon">
-                                                <span></span>
-                                                <span></span>
-                                            </div>
-                                            <canvas class='post_creat-create_box-canvas' id="imageCanvas"></canvas>
+                <div class='post_create-create_box'>
+                    <div class='post_create-create_box-main'>
+                        <div class="preview">
+                            <div class="post_create-create_box-upload">
+                                <div class="post_create-create_box-post_btn">
+                                    <div class="plus_icon">
+                                        <span></span>
+                                        <span></span>
                                     </div>
-                                    <div class='post_create-create_box-arrow'>
-                                        👉
-                                    </div>
-                                    <div class='post_create-create_box-right_load'>
-                                        안녕
-                                    </div>
+                                    <canvas class='post_creat-create_box-canvas' id="imageCanvas"></canvas>
+                                </div>
+                                <div class='post_create-create_box-arrow'>
+                                    👉
+                                </div>
+                                <div class='post_create-create_box-right_load'>
+                                    <img src="{{dess_image.url}}" style="width:100%;" name="dess_img">
+                                    <input name="image" type="file" onchange="setThumbnail(event);">
+                                    <div id="image_container"></div>
+                                    <p style="text-align: center;">{{dess_name}}</P>
                                 </div>
                             </div>
-                            <div class='post_create-create_box-file_pick'>
+                        </div>
+                        <div class='post_create-create_box-file_pick'>
+                            <form class="post_form" method="post" action="{% url 'post:post-detect' %}"
+                                autocomplete="off" enctype="multipart/form-data">{% csrf_token %}
                                 <div>
-                                    <input id='id_photo' value='{{ post.image.url }}' name="image" type="file">  
+                                    <input id='id_photo' name="image" type="file">
                                 </div>
-                                
-                            </div>
+
+                                <button class="post_create-create_box-save_btn" type="submit"><b>디져트 추천</b></button>
+                            </form>
+                        </div>
+                        <hr>
+                        <form class="post_form" method="post" action="{% url 'post:post-create' %}" autocomplete="off">
+                            {% csrf_token %}
+                            <input type="hidden" name="dess_id" value="{{dess_id}}">
+                            <input type="hidden" name="dess_ingred" value="{{dess_ingred}}">
+                            <input type="hidden" name="dess_image" value="{{dess_image}}">
                             <div class="title">
-                                <input name="title" class='post_create-create_box-title_input' placeholder="제목 입력..." type="text" value='{{post.title}}'>
+                                <input class='post_create-create_box-title_input' name="title" type="text"
+                                    placeholder="제목 입력..." value={{post.title}}>
                             </div>
+
                             <p>
                                 <textarea name="content" id="summernote">{{post.content}}</textarea>
                             </p>
-                        </div>
+                            <button class="post_create-create_box-save_btn" type="submit"><b>저장</b></button>
+                        </form>
                     </div>
-                    <div style='margin-top: 22px;'>
-                        <button class="post_create-create_box-save_btn" type="submit"><b>저장</b></button>
-                    </div>
-                    {% comment %} <input name="image" type="file" onchange="alert(this.value)">{% endcomment %}
-                <!-- <img src="{{ post.image.url }}"> -->
-                </form>
-            </div>
+                </div>
+                <div style='margin-top: 22px;'>
 
+                </div>
+
+
+            </div>
         </div>
     </div>
 </section>
 
 <script>
+    // 이미지미리보기
+    function setThumbnail(event) {
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+            var img = document.createElement("img");
+            img.setAttribute("src", event.target.result);
+            document.querySelector("div#image_container").appendChild(img);
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
     $('#summernote').summernote({
-    placeholder: '내용을 입력해주세요',
-    tabsize: 2,
-    width: 500,
-    height: 120,
-    toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['color', ['color']],
-    ]
+        placeholder: '내용을 입력해주세요',
+        tabsize: 2,
+        width: 500,
+        height: 120,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+        ]
     });
 
 
-
-
-
-
-
-    var fileInput  = document.querySelector( "#id_photo" ),
-    button = document.querySelector( ".input-file-trigger" ),
-    the_return = document.querySelector(".file-return");
+    var fileInput = document.querySelector("#id_photo"),
+        button = document.querySelector(".input-file-trigger"),
+        the_return = document.querySelector(".file-return");
     fileInput.addEventListener('change', handleImage, false);
     var canvas = document.getElementById('imageCanvas');
     var ctx = canvas.getContext('2d');
-    function handleImage(e){
-    var reader = new FileReader();
-    reader.onload = function(event){
-        var img = new Image();
-        // var imgWidth =
-        img.onload = function(){
-            canvas.width = 400;
-            canvas.height = 400;
-            ctx.drawImage(img,0,0,400,400);
+    function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = new Image();
+            // var imgWidth =
+            img.onload = function () {
+                canvas.width = 200;
+                canvas.height = 200;
+                ctx.drawImage(img, 0, 0, 200, 200);
+            };
+            img.src = event.target.result;
         };
-        img.src = event.target.result;
-    };
-    reader.readAsDataURL(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
     }
 
 </script>
