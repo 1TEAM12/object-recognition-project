@@ -130,14 +130,23 @@ def likes_list(request, post_id):
 #검색
 @login_required(login_url='user:signin')
 def search(request):
-    pr = Post.objects.all()
+    post_result = Post.objects.all()
     keyword = request.GET.get('keyword')
     if keyword: 
-        pr = pr.filter(
+        post_result = post_result.filter(
             # Q 함수 OR조건으로 데이터 조회
             # icontains 대소문자 구분없이 필드에 단어 포함되어 있는지 검사
             Q(title__icontains=keyword) |
             Q(content__icontains=keyword)
         )
     
-    return render(request, 'post/post/search_results.html', { 'search':pr , 'keyword':keyword})
+    return render(request, 'post/post/search_results.html', {'search':post_result ,'keyword':keyword})
+
+#팔로우게시물
+@login_required(login_url='user:signin')
+def follow_list(request, post_id):
+   if request. method == 'GET':
+        context = dict()
+        context['user'] = User.objects.get(id=post_id)
+        context['follow_posts'] = get_list_or_404(Post,author__followers=request.user)
+        return render(request, 'post/post/post_following.html', context=context)

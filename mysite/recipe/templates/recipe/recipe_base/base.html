@@ -19,13 +19,16 @@
   <meta name="msapplication-tap-highlight" content="no">
   <link href="  {% static 'assets/apple-icon-180x180.png'%}" rel="apple-touch-icon">
   <link href="  {% static 'assets/favicon.ico'%}" rel="shortcut icon">
-
+  
 
 {% block title %}{% endblock title %}
 
 
-<link href="  {% static 'css/main.82cfd66e.css'%}" rel="stylesheet"></head>
+<link href="  {% static 'css/main.82cfd66e.css'%}" rel="stylesheet">
+<link href=" {% static 'css/post_detail.css'%}" rel='stylesheet'>
+<link href=" {% static 'css/post_create.css'%}" rel='stylesheet'>
 
+</head>
 <body>
 
     <!-- Add your content of header -->
@@ -40,25 +43,35 @@
         <a href="{% url 'post:index' %}" class="navbar-brand">Sparkling Coffee Club</a>
       </div>
     
-      <nav class="sidebar">
+      <nav class="sidebar" style='border-right: 1px solid rgb(219,219,219)';>
         <div class="navbar-collapse" id="navbar-collapse">
-          <div class="site-header hidden-xs">
+          <div class="site-header hidden-xs" style='border-bottom: 1px solid rgb(219,219,219);'>
               <a class="site-brand" href="{% url 'post:index' %}" title="">
-                <img class="img-responsive site-logo" alt="" src="{% static './assets/images/mashup-logo.svg'%}" width='45px' height='30px'>
+                <img class="site-logo" alt="" src="{% static './assets/images/mashup-logo.svg'%}" width='45px' height='30px'>
                 Sparkling Coffee Club
               </a>
             <p>디저트를 추천해주는 서비스</p>
             {% if user.is_authenticated%}
-            <p>{{user.username }}님 환영합니다.
+
+            <p><b>{{user.username }}</b>님 환영합니다.
+         
+            <li><a href="{% url 'user:user-list' %}" title=""style="color:#FFCD48;">Follow</a></li>
+
             {% endif %}
           </div>
           <ul class="nav">
+            
+            <form class="d-flex" action="{% url 'post:search' %}" method="get">
+              <input style='border-radius:30px; margin-bottom:15px; border:2px solid #FFCD48;' class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="keyword" value="{{keyword}}" >
+            </form> 
+
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'post:my-list' user.id %}" title="">MyDesset</a></li>
+            <li><a href="{% url 'post:my-list' user.id %}" title="">MyDessert</a></li>
             <li><a href="{% url 'post:post-create' %}" title="">DessertCreate</a></li>
             <li><a href="{% url 'post:like-list' user.id %}" title="">DessertLike</a></li>
-            <li><a href="{% url 'recipe:recipe-like-list' user.id%}" title="">RecipeLike</a></li>
+            <li><a href="{% url 'recipe:recipe-like-list' user.id %}" title="">RecipeLike</a></li>
+            <li><a href="{% url 'post:follow-list' user.id %}" title="">FollowingDessert</a></li>
             {% endif %}
             {% if user.is_authenticated %}
             <li><a href="{% url 'user:logout' %}">Logout</a></li>
@@ -74,7 +87,7 @@
                 <i class="fa fa-github"></i>
               </a>
             </p>
-            <p>© Copyrignt | Sparkling Coffee Club</p>
+            <p style='font-size: 12px;'>© Copyrignt | Sparkling Coffee Club</p>
           </nav>  
         </div> 
       </nav>

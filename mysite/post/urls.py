@@ -12,7 +12,7 @@ urlpatterns = [
     path('post/mylist/<int:user_id>/', views.my_list, name='my-list'),
     path('post/create/', views.post_create, name='post-create'),
     path('post/update/<int:post_id>/', views.post_update, name='post-update'),
-    path('post/delete/<int:post_id>', views.post_delete, name='post-delete'),
+    path('post/delete/<int:post_id>/', views.post_delete, name='post-delete'),
     
     #comment
     path('comment/create/<int:comment_id>/', views.comment_create, name='comment-create'),
@@ -25,6 +25,9 @@ urlpatterns = [
 
     #search
     path('search/', views.search, name='search'),
+
+    #follow
+    path('post/followlist/<int:post_id>/', views.follow_list, name='follow-list'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media루트 경로를 설정
