@@ -1,9 +1,16 @@
 from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment
-from user.models import User
 from django.db.models import Q
+
+from .models import Post, Comment, TempImg, Dessert
+from .img_det import pick_img
+
+from recipe.models import Recipe
+from user.models import User
+
+import random
 from notification.utilities import create_notification
+
 # Create your views here.
 
 def index(request):
@@ -18,7 +25,10 @@ def post_detail(request, post_id):
     if request.method == 'GET':
         context = dict()
         context['post'] = Post.objects.get(id=post_id)
+        post_ing = context['post'].ingred
         context['comment'] = Comment.objects.filter(post_id=post_id).order_by('-created_at')
+        dessert_temp = Dessert.objects.filter(ingred=post_ing)
+        context['desserts'] = random.sample(list(dessert_temp), k=3)
         return render(request, 'post/post/post_detail.html', context=context)
     
 @login_required(login_url='user:signin')
@@ -41,10 +51,13 @@ def post_create(request):
     elif request.method =='POST':
         post = Post()
         post.title = request.POST.get('title')
-        post.image = request.FILES.get('image')
+        post.image = request.POST.get('dess_image')
+        post.ingred = request.POST.get('dess_ingred')
+        post.dessert_id = request.POST.get('dess_id')       
         post.content = request.POST.get('content')
         post.author = request.user
         post.save()
+
         return redirect('post:post-detail',post_id=post.id)
 
 #게시글 수정
@@ -52,15 +65,18 @@ def post_create(request):
 def post_update(request, post_id):
     if request.method == 'GET':
         post = get_object_or_404(Post,id=post_id)
+        dessert = Dessert.objects.get(id=post.dessert_id)
         if request.user == post.author:
-            context={'post':post}
+            context={'post':post, 'dessert':dessert}
             return render(request,'post/post/post_update.html',context)
         return redirect('/')
     
     elif request.method == 'POST':
         post = Post.objects.get(id=post_id)
         post.title = request.POST.get('title')
-        post.image = request.FILES.get('image')
+        post.image = request.POST.get('image')
+        post.ingred = request.POST.get('dess_ingred')
+        post.dessert_id = request.POST.get('dess_id') 
         post.content = request.POST.get('content')
         post.save()
         return redirect('/')
@@ -129,6 +145,7 @@ def likes_list(request, post_id):
         context = dict()
         context['user'] = User.objects.get(id=post_id)
         context['liked_posts'] = get_list_or_404(Post,like_authors=post_id)
+        
         return render(request, 'post/post/post_like_list.html', context=context)
 
 #검색
@@ -153,3 +170,67 @@ def follow_list(request, post_id):
         context['user'] = User.objects.get(id=post_id)
         context['follow_posts'] = get_list_or_404(Post,author__followers=request.user)
         return render(request, 'post/post/post_following.html', context=context)
+
+# image detect 함수 호출
+@login_required(login_url='user:signin')
+def post_detect(request):
+    if request.method == "POST":
+        temp_img = TempImg()
+        temp_img.image = request.FILES.get('before_image')
+        # temp_img.image = request.POST['before_image']
+        print(temp_img.image)
+        temp_img.save()
+        print(temp_img.image)
+        
+        img_url = temp_img.image
+        context = pick_img(request,img_url)
+        
+        print(context['picked'])
+        
+        ing_list = Dessert()
+        ing_list = Dessert.objects.filter(ingred=context['picked'])
+        print(ing_list)
+        
+        rand_pick = random.choice(ing_list)
+        context['dess_image'] = rand_pick.image
+        context['dess_id'] = rand_pick.id
+        context['dess_name'] = rand_pick.dessert_name
+        context['dess_ingred'] = rand_pick.ingred
+
+        return render(request, 'post/post/post_create.html', context)
+    
+    
+# update에서 image detect 함수 호출
+@login_required(login_url='user:signin')
+def post_detect_update(request, post_id):
+    if request.method == "POST":
+        temp_img = TempImg()
+        temp_img.image = request.FILES.get('image')
+        temp_img.save()
+
+        img_url = temp_img.image
+        context = pick_img(request,img_url)
+        
+        print(context['picked'])
+        
+        # post -> context
+        post = Post.objects.get(id=post_id)
+        context['post'] = post
+        
+        # 재료사진 -> context
+        context['temp_img'] = temp_img
+        
+        ing_list = Dessert()
+        ing_list = Dessert.objects.filter(ingred=context['picked'])
+        rand_pick = random.choice(ing_list)  
+        
+        # 머신러닝 결과 (요리사진) -> context
+        context['dess_image'] = rand_pick.image
+        context['dess_id'] = rand_pick.id
+        context['dess_name'] = rand_pick.dessert_name
+        context['dess_ingred'] = rand_pick.ingred
+        print(context)
+
+        return render(request, 'post/post/post_update.html', context)
+    
+    

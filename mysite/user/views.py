@@ -163,7 +163,7 @@ def user_list(request):
 @login_required(login_url='user:signin')
 def process_follow(request, user_id):
     me = request.user
-    post = Post.objects.get(id=14) # id값 지정해주기 (더미데이터)
+    post = Post.objects.get(id=1) # id값 지정해주기 (더미데이터)
     user = User.objects.get(id=user_id)
     if me in user.followers.all():
         user.followers.remove(request.user)
