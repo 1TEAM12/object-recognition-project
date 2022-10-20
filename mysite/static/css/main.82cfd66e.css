@@ -339,7 +339,7 @@ textarea {
 }
 
 a {
-    color: #ff6360;
+    color: #FFCD48;
     text-decoration: none
 }
 
@@ -368,6 +368,7 @@ img {
     height: 100%;
     object-fit: contain;
     width: 100%;
+    
 }
 
 .img-rounded {
@@ -2986,15 +2987,15 @@ fieldset[disabled] .btn-default:hover {
 
 .btn-primary {
     color: #fff;
-    background-color: #ff6360;
-    border-color: #ff6360
+    background-color: #ffcd48;
+    border-color: #ffcd48
 }
 
 .btn-primary.focus,
 .btn-primary:focus {
     color: #fff;
-    background-color: #ff312d;
-    border-color: #e00400
+    background-color: #fae097;
+    border-color: #fae097
 }
 
 .btn-primary.active,
@@ -3002,8 +3003,8 @@ fieldset[disabled] .btn-default:hover {
 .btn-primary:hover,
 .open>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #ff312d;
-    border-color: #ff2723
+    background-color: #fae097;
+    border-color: #fae097
 }
 
 .btn-primary.active.focus,
@@ -5700,6 +5701,7 @@ button.close {
     position: relative;
     display: block;
     margin: 0px 5px 0px 5px;
+    
 }
 
 .grid-item .project-description {

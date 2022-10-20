@@ -1,12 +1,12 @@
-{% extends "../user_base/base.html" %}
+{% extends "post/post_base/base.html" %}
 
-{% block title %}Sparkling Coffee Club | User list {% endblock title%}
+{% block title %}<title>Sparkling Coffee Club | User list </title>{% endblock title%}
 
 {% block content %}
 <div class="container timeline-container">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
+    <div class="row">        
+        <div class="col-md-7">
+            <div class="row">
                 <div class="card-body">
                     <div>
                         <h4 class="card-title">{{ user.username }} 님!</h4>
@@ -14,12 +14,9 @@
                     </div>
                     <p> 더 많은 사람들을 팔로우해보세요! </p>
                 </div>
-            </div>
-        </div>
-        <br><hr><br>
-        <div class="col-md-7">
-            <div class="row">
+                <br><hr>
                 <h4>팔로우 가능한 사람들</h4>
+                <br>
                 {% for ul in user_list %}
                     <div class="card">
                         <div class="card-body">
@@ -29,10 +26,13 @@
                                     folloewing {{ ul.followings.count }} 명 / follower {{ ul.followers.count }} 명
                                 </p>
                                 {% if ul in user.followings.all %}
-                                <button 
-                                    <a href="/user/follow/{{ ul.id }}" class="card-link">[팔로우 취소]</a>
+                                <button style="background-color:#FFCD48; border-color: #FFCD48;">
+                                    <a href="/user/follow/{{ ul.id }}" style="color:#ffffff;">팔로우 취소</a>
+                                </button>
                                 {% else %}
-                                    <a href="/user/follow/{{ ul.id }}" class="card-link">[팔로우]</a>
+                                <button style="background-color:#FFCD48; border-color: #FFCD48;">
+                                    <a href="/user/follow/{{ ul.id }}" style="color:#ffffff;">팔로우</a>
+                                </button>
                                 {% endif %}
                             </h6> 
                         </div>
