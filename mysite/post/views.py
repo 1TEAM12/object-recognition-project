@@ -73,10 +73,7 @@ def post_update(request, post_id):
     
     elif request.method == 'POST':
         post = Post.objects.get(id=post_id)
-        post.title = request.POST.get('title')
-        post.image = request.POST.get('image')
-        post.ingred = request.POST.get('dess_ingred')
-        post.dessert_id = request.POST.get('dess_id') 
+        post.title = request.POST.get('title') 
         post.content = request.POST.get('content')
         post.save()
         return redirect('/')
