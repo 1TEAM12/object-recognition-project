@@ -20,8 +20,8 @@
   <link href="  {% static 'assets/apple-icon-180x180.png'%}" rel="apple-touch-icon">
   <link href="  {% static 'assets/favicon.ico'%}" rel="shortcut icon">
   
-  
-
+  <!--비밀번호 보기/숨김-->
+  <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <!--구글폰트-->
   <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
@@ -40,6 +40,7 @@
 <link href=" {% static 'css/post_detail.css'%}" rel='stylesheet'>
 <link href=" {% static 'css/post_create.css'%}" rel='stylesheet'>
 <link href=" {% static 'css/comment_update_form.css'%}" rel='stylesheet'>
+
 
 </head>
 <body>
@@ -66,9 +67,9 @@
             <p>디저트를 추천해주는 서비스</p>
             {% if user.is_authenticated%}
 
-            <p><b>{{user.username }}</b>님 환영합니다.
+            <p><li><b>{{user.username }}</b>님 환영합니다.</li>
          
-            <li><a href="{% url 'user:user-list' %}" title=""style="color:#FFCD48;">Follow</a></li>
+            <li style='margin:10px 0px 10px 0px;'><a href="{% url 'user:user-list' %}" title=""style="color:#FFCD48;">Follow</a></li>
 
             {% endif %}
           </div>
