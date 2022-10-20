@@ -3,8 +3,9 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.http  import JsonResponse
 from .models import User
+from post.models import Post
 from .validators import contains_special_character, contains_uppercase_letter, contains_lowercase_letter, contains_number
-
+from notification.utilities import create_notification
 import requests
 # Create your views here.
 
@@ -162,9 +163,11 @@ def user_list(request):
 @login_required(login_url='user:signin')
 def process_follow(request, user_id):
     me = request.user
+    post = Post.objects.get(id=4) # id값 지정해주기 (더미데이터)
     user = User.objects.get(id=user_id)
     if me in user.followers.all():
         user.followers.remove(request.user)
     else:
         user.followers.add(request.user)
+        create_notification(request, user, 'followers',post )
     return redirect('/user/userlist/')
