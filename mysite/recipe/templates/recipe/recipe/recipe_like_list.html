@@ -8,13 +8,26 @@
   <div class="col-xs-12 section-container-spacer">
     <h3>RecipeLike</h3>
   </div>
-  {% for recipe in liked_recipes %}
-  <div class="col-xs-12 col-md-4 section-container-spacer">
-    <img class="img-responsive" alt="" src="{{ recipe.image.url }}" width="50%">
-    <h2>{{recipe.title | truncatechars:10}}</h2>
-    <a href="{% url 'recipe:recipe-detail' recipe.id%}" class="btn btn-primary" title="">View Recipe</a>
+
+  <div style="max-width: 1600px; margin: 30px auto 60px; padding: 0 20px;display: grid; grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); grid-gap: 20px;">
+    {% for recipe in liked_recipes %}
+      <div class="col-xs-12 col-md-4 section-container-spacer" style=" width: 100%; padding: 20px; background-color: #fff; solid #f0f0f0;">
+        <div>
+          <div style=" max-width: 90%;  height: 30vw; max-height: 300px; text-align: center;">
+            <img class="img-responsive" alt="" src="{{ recipe.image.url }}" style=" background-size: cover; background-repeat: no-repeat; ">
+          </div>
+          <div style="width: 100%; height: 7vw;">
+            <h2>{{recipe.title| truncatechars:10}}</h2>
+          </div> 
+          <div style="width: 15%; height: 4vw;">
+            <a href="{% url 'recipe:recipe-detail' recipe.id%}" class="btn btn-primary" title="">View Dessert</a>
+          </div> 
+        </div>
+      </div>
+    {% endfor %}
+
   </div>
-  {% endfor %}
+
 {% else %}
 <h1>게시글 없음</h1>
 {% endif %}
