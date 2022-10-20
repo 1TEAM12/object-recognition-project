@@ -145,6 +145,7 @@ def likes_list(request, post_id):
         context = dict()
         context['user'] = User.objects.get(id=post_id)
         context['liked_posts'] = get_list_or_404(Post,like_authors=post_id)
+        
         return render(request, 'post/post/post_like_list.html', context=context)
 
 #검색
@@ -188,7 +189,9 @@ def post_detect(request):
         
         ing_list = Dessert()
         ing_list = Dessert.objects.filter(ingred=context['picked'])
-        rand_pick = random.choice(ing_list)  
+        print(ing_list)
+        
+        rand_pick = random.choice(ing_list)
         context['dess_image'] = rand_pick.image
         context['dess_id'] = rand_pick.id
         context['dess_name'] = rand_pick.dessert_name
