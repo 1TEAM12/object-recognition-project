@@ -11,7 +11,7 @@
   {% for recipe in liked_recipes %}
   <div class="col-xs-12 col-md-4 section-container-spacer">
     <img class="img-responsive" alt="" src="{{ recipe.image.url }}" width="50%">
-    <h2>{{recipe.title}}</h2>
+    <h2>{{recipe.title | truncatechars:10}}...</h2>
     <a href="{% url 'recipe:recipe-detail' recipe.id%}" class="btn btn-primary" title="">View Recipe</a>
   </div>
   {% endfor %}

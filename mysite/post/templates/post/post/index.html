@@ -19,7 +19,7 @@
         <div class="project-text-holder">
           <div class="project-text-inner">
             <h5>{{ post.author.username }}님</h5>
-            <h3>{{ post.title }}</h3>
+            <h3>{{ post.title | truncatechars:10 }}...</h3>
             <p>Review More</p>
           </div>
         </div>
