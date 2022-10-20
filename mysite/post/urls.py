@@ -13,6 +13,10 @@ urlpatterns = [
     path('post/create/', views.post_create, name='post-create'),
     path('post/update/<int:post_id>/', views.post_update, name='post-update'),
     path('post/delete/<int:post_id>/', views.post_delete, name='post-delete'),
+
+    #detect
+    path('post/detect/', views.post_detect, name='post-detect'),
+
     
     #comment
     path('comment/create/<int:comment_id>/', views.comment_create, name='comment-create'),
