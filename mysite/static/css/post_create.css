@@ -27,7 +27,7 @@
 
 .post_create-create_box-upload{
     display:flex;
-    margin-top:10px;
+    padding-top:8px;
 }
 
 .post_create-create_box-post_btn{
@@ -59,6 +59,7 @@
     border: dashed 4px rgb(219,219,219);
     border-radius:10px; 
     margin:10px;
+    overflow:hidden;
 }
 
 .post_create-create_box-file_pick{
@@ -74,9 +75,18 @@
 .post_create-create_box-save_btn{
     margin: auto;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 10px;
     border: 2px solid #FFCD48;
     height: 40px;
+    background-color: #FFCD48;
+}
+
+.post_create-create_recommend_btn{
+    width: 35%;
+    margin-left:200px;
+    border-radius: 10px;
+    border: 2px solid #FFCD48;
+    height: 38px;
     background-color: #FFCD48;
 }
 
