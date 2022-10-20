@@ -20,13 +20,13 @@
                                     <button style="background-color:#FFCD48; border-color: #FFCD48;">읽음</button>
                                     </form>
                             {% elif notification.notification_type == 'post_like' and notification.to_user.username != request.user.username %}
-                                    <strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title }}</a>의 게시글을 좋아합니다.<br>
+                                    <strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title | truncatechars:10 }}...</a>의 게시글을 좋아합니다.<br>
                                     <small>{{ notification.created_at }}</small>
                                     <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
                                     <button style="background-color:#FFCD48; border-color: #FFCD48;">읽음</button>
                                     </form>
                             {% elif notification.notification_type == 'comment' and notification.to_user.username != request.user.username %}
-                                    <strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title }}</a>의 게시글에 댓글을 작성했습니다. <br>
+                                    <strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title | truncatechars:10 }}...</a>의 게시글에 댓글을 작성했습니다. <br>
                                     <small>{{ notification.created_at }}</small>
                                     <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
                                     <button style="background-color:#FFCD48; border-color: #FFCD48;">읽음</button>

@@ -28,13 +28,8 @@ def post_detail(request, post_id):
         post_ing = context['post'].ingred
         context['comment'] = Comment.objects.filter(post_id=post_id).order_by('-created_at')
         dessert_temp = Dessert.objects.filter(ingred=post_ing)
-        context['desserts'] = random.choices(dessert_temp, k=3)
-        print(context['desserts'])
+        context['desserts'] = random.sample(list(dessert_temp), k=3)
         return render(request, 'post/post/post_detail.html', context=context)
-    
-    
-    
-    
     
 @login_required(login_url='user:signin')
 def my_list(request, user_id):
@@ -182,7 +177,8 @@ def post_detect(request):
         temp_img = TempImg()
         temp_img.image = request.POST.get('image')
         temp_img.save()
-
+        print(temp_img.image)
+        
         img_url = temp_img.image
         context = pick_img(request,img_url)
         
