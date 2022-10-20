@@ -10,6 +10,14 @@ class Dessert(models.Model):
     image = models.ImageField(upload_to="dessert_pics", blank=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.PROTECT, related_name='recipe_dessert')  
 
+class TempImg(models.Model):
+    class Meta():
+        db_table = 'db_tempimg'
+    
+    image = models.ImageField(upload_to="post_pics", blank=True)
+# 쌓이는 데이터를 일정 기간뒤에 리셋이 가능한지
+
+
 
 class Post(models.Model):
     title = models.CharField(max_length=30, blank=True)

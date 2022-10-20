@@ -1,6 +1,5 @@
 from django.db import models
 from user.models import User
-from post.models import Post, Dessert
 
 # Create your models here.
 class Recipe(models.Model):

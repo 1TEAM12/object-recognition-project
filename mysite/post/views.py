@@ -1,9 +1,14 @@
 from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment
+
+from .models import Post, Comment, TempImg
+from .img_det import pick_img
+
 from user.models import User
-from django.db.models import Q
+
 # Create your views here.
+
+
 
 def index(request):
     if request.method == 'GET':
@@ -150,3 +155,26 @@ def follow_list(request, post_id):
         context['user'] = User.objects.get(id=post_id)
         context['follow_posts'] = get_list_or_404(Post,author__followers=request.user)
         return render(request, 'post/post/post_following.html', context=context)
+
+# image detect 함수 호출
+@login_required(login_url='user:signin')
+def post_detect(request):
+    if request.method == "POST":
+        temp_img = TempImg()
+        temp_img.image = request.FILES.get('image')
+        temp_img.save()
+        
+        # post = Post()
+        # # post.image = request.FILES.get('image')
+        # post.image = request.FILES['image'].read()
+        # print(f"------------------------------------------------{post.image}")
+        # post.author_id = request.user.id
+        # print(f"------------------------------------------------{post.author}")
+        # post.dessert_id = 1
+        
+        # post.save()
+        # post = Post.objects.get(id=post_id)
+        img_url = temp_img.image
+        context = pick_img(request,img_url)
+        # context['image'] = 'temp_img'
+        return render(request, 'post/post/post_create.html', context)
