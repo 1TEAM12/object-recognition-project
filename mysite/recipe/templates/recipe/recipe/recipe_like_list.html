@@ -14,7 +14,7 @@
       <div class="col-xs-12 col-md-4 section-container-spacer" style=" width: 100%; padding: 20px; background-color: #fff; solid #f0f0f0;">
         <div>
           <div style=" max-width: 90%;  height: 30vw; max-height: 300px; text-align: center;">
-            <img class="img-responsive" alt="" src="{{ recipe.image.url }}" style=" background-size: cover; background-repeat: no-repeat; ">
+            <iframe width="320" height="315" src="{{recipe.youtube_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div style="width: 100%; height: 7vw;">
             <h2>{{recipe.title| truncatechars:10}}</h2>

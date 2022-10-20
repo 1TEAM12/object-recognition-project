@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Recipe
-
+from post.models import Dessert
+ 
 # Create your views here.
 @login_required(login_url='user:signin')
 def recipe_detail(request, recipe_id):
@@ -11,11 +12,12 @@ def recipe_detail(request, recipe_id):
         return render(request, 'recipe/recipe/recipe_detail.html', context=context)
         
 @login_required(login_url='user:signin')
-def recipe_like_list(request, recipe_id):
+def recipe_like_list(request, user_id):
     if request.method == 'GET':
         context = dict()
-        context['liked_recipes'] = get_list_or_404(Recipe,like_authors=recipe_id)
+        context['liked_recipes'] = get_list_or_404(Recipe, like_authors=user_id)
         return render(request, 'recipe/recipe/recipe_like_list.html', context=context)
+
 
 @login_required(login_url='user:signin')
 def likes(request, recipe_id):

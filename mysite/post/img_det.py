@@ -5,10 +5,11 @@ import cv2
 import random 
 
 
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='post/static/best.pt', force_reload=True)
-fruit_model = ['apple', 'banana', 'pineapple', 'orange', 'pear', 'guava' ]
+
 
 def pick_img(request, img_url):
+    model = torch.hub.load('ultralytics/yolov5', 'custom', path='post/static/best.pt', force_reload=True)
+    fruit_model = ['apple', 'banana', 'pineapple', 'orange', 'pear', 'guava' ]
     print(str(img_url))
     # test_img = cv2.imread('d:/sparta_camp/SCC_ML/scc_v5/object-recognition-project/mysite/post/detect/' + str(img_url))            # load image file root
     test_img = cv2.imread('./media/' + str(img_url))
