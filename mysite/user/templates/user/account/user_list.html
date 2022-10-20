@@ -4,40 +4,44 @@
 
 {% block content %}
 <div class="container timeline-container">
-    <div class="row">        
-        <div class="col-md-7">
-            <div class="row">
-                <div class="card-body">
+    <div>        
+        <div style='margin-left: 160px;'>
+            <div>
+                <div style='padding:8px 16px;width:600px;'>
                     <div>
                         <h4 class="card-title">{{ user.username }} 님!</h4>
                         <h5> follower : {{ user.followers.count }} 명 / following : {{ user.followings.count }} 명</h5>
                     </div>
                     <p> 더 많은 사람들을 팔로우해보세요! </p>
                 </div>
-                <br><hr>
-                <h4>팔로우 가능한 사람들</h4>
-                <br>
+                
+                <h4>추천</h4>
+                
                 {% for ul in user_list %}
-                    <div class="card">
-                        <div class="card-body">
+                    <div>
+                        <div style='padding:8px 16px; border-radius:8px; width:600px; box-shadow: 0px 1px 10px -4px rgb(153 153 153); display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;'>
                             <h5 class="card-title">{{ ul.username }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                <p class="card-text">
-                                    folloewing {{ ul.followings.count }} 명 / follower {{ ul.followers.count }} 명
-                                </p>
-                                {% if ul in user.followings.all %}
-                                <button style="background-color:#FFCD48; border-color: #FFCD48;">
-                                    <a href="/user/follow/{{ ul.id }}" style="color:#ffffff;">팔로우 취소</a>
-                                </button>
-                                {% else %}
-                                <button style="background-color:#FFCD48; border-color: #FFCD48;">
-                                    <a href="/user/follow/{{ ul.id }}" style="color:#ffffff;">팔로우</a>
-                                </button>
-                                {% endif %}
-                            </h6> 
+                            
+                            
+                                <div style='margin-right:200px;'>
+                                    팔로잉 {{ ul.followings.count }} 명 | 팔로워 {{ ul.followers.count }} 명
+                                </div>
+                                <div>
+                                    {% if ul in user.followings.all %}
+                                    <button style="width:91px; height: 32px; border-radius: 12px; border: 0; background-color:#FFCD48; border-color: #FFCD48; ">
+                                        <a href="/user/follow/{{ ul.id }}" style=" text-decoration: none; color:white; ">팔로우 취소</a>
+                                    </button>
+                                    {% else %}
+                                    <button style="width:91px; height:32px; border-radius: 12px; border: 0; background-color:#FFCD48; border-color: #FFCD48;">
+                                        <a href="/user/follow/{{ ul.id }}" style="text-decoration: none; color:white;">팔로우</a>
+                                    </button>
+                                    {% endif %}
+                                </div>
+                            
+
                         </div>
                     </div>
-                    <hr>
+                    
                 {% endfor %}
             </div>
         </div>
