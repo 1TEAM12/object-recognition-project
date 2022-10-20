@@ -368,6 +368,7 @@ img {
     height: 100%;
     object-fit: contain;
     width: 100%;
+    
 }
 
 .img-rounded {
@@ -5700,6 +5701,7 @@ button.close {
     position: relative;
     display: block;
     margin: 0px 5px 0px 5px;
+    
 }
 
 .grid-item .project-description {
