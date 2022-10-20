@@ -12,8 +12,8 @@
           {% for post in search %}
           <div class="col-xs-12 col-md-4 section-container-spacer">
             <img class="img-responsive" alt="" src="{{ post.image.url }}" width="50%">
-            <h2>{{post.title}}</h2>
-            <p>{{post.content | safe}}</p>
+            <h2>{{post.title | truncatechars:10 }}</h2>
+            <p>{{post.content | safe  }} </p>
             <a href="{% url 'post:post-detail' post.id%}" class="btn btn-primary" title="">View Dessert</a>
           </div>
           {% endfor %}
