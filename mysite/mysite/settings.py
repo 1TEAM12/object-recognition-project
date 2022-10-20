@@ -141,8 +141,9 @@ BASE_DIR/'static',
 
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') 
 MEDIA_URL = '/uploads/'
+
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
