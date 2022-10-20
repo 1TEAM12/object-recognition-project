@@ -1,0 +1,49 @@
+.comment_update-comment_box{
+    width:200px; 
+    height:100px;
+}
+
+.comment_update-sign_up_text{
+    margin-top:20px;
+}
+
+.comment_update-comment_box_in_wrap{
+    border-radius:10px; 
+    box-shadow: 0px 1px 10px -3px grey;
+    width:200px; 
+    height:100px;
+}
+
+.comment_update-message{
+    text-align:center; 
+    padding-top:17px;
+}
+
+.comment_update-box_style{
+    text-align:center;
+    margin-top: 15px;
+    margin-right:auto;
+    margin-left:auto;
+    border: 0;
+    background-color: rgb(219,219,219);
+    border-radius: 15px;
+    outline: none;
+    width: 176px;
+}
+
+.comment_update-input_style{
+    width:150px; 
+    border:none; 
+    background-color: transparent; 
+    outline:none;
+}
+
+.comment_update-btn{
+    margin: auto;
+    width: 100%;
+    border-radius: 30px;
+    border: 2px solid #FFCD48;
+    height: 40px;
+    background-color: #FFCD48;
+    margin-top:15px;
+}

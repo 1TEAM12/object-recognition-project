@@ -24,7 +24,7 @@
                     <div class='post_detail-feed_box-comment_box'>
                         <div class='post_detail-feed_box-comment_wrap'>
                             <div class='post_detail-feed_box-right_top'>
-                                <div>{{ post.author.username }}</div>
+                                <div><b>{{ post.author.username }}</b></div>
                                 {% if request.user == post.author %}
                                 <div class='dropdown'>
                                     <a><img class='horiz_img' src="{% static './assets/more_horiz.png'%}"/></a>
@@ -42,7 +42,7 @@
                             {% for comment in post.comments.all %}
                             <div class='post_detail-feed_box-comment_list_wrap'>
                                 <div class="post_detail-feed_box-comment_list">
-                                    <div class="user_id" style='margin-right:15px;'>{{ comment.author.username }}</div>
+                                    <div class="user_id" style='margin-right:15px;'><b>{{ comment.author.username }}</b></div>
                                     <div> {{ comment.content }}</div>
                                 </div>
                                 <div class='post_detail-feed_box-comment_crt'>
@@ -52,8 +52,8 @@
                                     <div class='dropdown'>
                                         <a><img class='horiz_img' src="{% static './assets/more_horiz.png'%}"/></a>
                                         <div class='dropdown-content'>
-                                            <a href="{% url 'post:comment-update' comment.id %}">수정</a>
-                                            <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
+                                                <a href="{% url 'post:comment-update' comment.id %}">수정</a>
+                                                <a href="{% url 'post:comment-delete' comment.id %}">삭제</a>
                                         </div>
                                     </div>
                                     {% endif %} 
@@ -72,11 +72,11 @@
                         <div class='post_detail-feed_box-like_bar'>
                             
                             {% if user in post.like_authors.all %}
-                            <div class='post_detail-feed_box-like_wrap'><button class='post_detail-feed_box-like_button'><img src="{% static './assets/like.png'%}"/></button></div>
+                            <div class='post_detail-feed_box-like_wrap'><button class='post_detail-feed_box-like_button'><img style='width:20px; height:20px;' src="{% static './assets/like.png'%}"/></button></div>
                             {% else %}
-                            <div class='post_detail-feed_box-like_wrap'><button class='post_detail-feed_box-like_button'><img src="{% static './assets/like_empty.png'%}"/></button></div>
+                            <div class='post_detail-feed_box-like_wrap'><button class='post_detail-feed_box-like_button'><img style='width:20px; height:20px;' src="{% static './assets/like_empty.png'%}"/></button></div>
                             {% endif %}
-                            <div class='post_detaile-feed_box-like_count_text'>좋아요{{post.like_authors.count}}개</div>
+                            <div class='post_detaile-feed_box-like_count_text'><b>좋아요 {{post.like_authors.count}}개</b></div>
                         
                         </div>
                     </form>
