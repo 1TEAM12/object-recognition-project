@@ -43,22 +43,22 @@
         <a href="{% url 'post:index' %}" class="navbar-brand">Sparkling Coffee Club</a>
       </div>
     
-      <nav class="sidebar">
+      <nav class="sidebar" style='border-right: 1px solid rgb(219,219,219)';>
         <div class="navbar-collapse" id="navbar-collapse">
-          <div class="site-header hidden-xs">
+          <div class="site-header hidden-xs" style='border-bottom: 1px solid rgb(219,219,219);'>
               <a class="site-brand" href="{% url 'post:index' %}" title="">
                 <img class="site-logo" alt="" src="{% static './assets/images/mashup-logo.svg'%}" width='45px' height='30px'>
                 Sparkling Coffee Club
               </a>
             <p>디저트를 추천해주는 서비스</p>
             {% if user.is_authenticated%}
-            <p>{{user.username }}님 환영합니다.
+            <p><b>{{user.username }}</b>님 환영합니다.
             {% endif %}
           </div>
           <ul class="nav">
             
             <form class="d-flex" action="{% url 'post:search' %}" method="get">
-              <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="keyword" value="{{keyword}}" >
+              <input style='border-radius:30px; margin-bottom:15px; border:2px solid #FFCD48;' class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="keyword" value="{{keyword}}" >
             </form> 
 
             <li><a href="{% url 'post:index' %}" title="">Home</a></li>
@@ -82,7 +82,7 @@
                 <i class="fa fa-github"></i>
               </a>
             </p>
-            <p>© Copyrignt | Sparkling Coffee Club</p>
+            <p style='font-size: 12px;'>© Copyrignt | Sparkling Coffee Club</p>
           </nav>  
         </div> 
       </nav>
