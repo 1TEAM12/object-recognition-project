@@ -4,20 +4,31 @@
 {% block title %} <title>Sparkling Coffee Club| 검색결과</title> {% endblock title%}
 
 {% block content %}
-    <div class="row">
-        {% if search %}
-          <div class="col-xs-12 section-container-spacer">
-            <h3> 검색하신 {{ keyword }} 정보입니다. </h3>
+
+<div class="row">
+  {% if search %}
+    <div class="col-xs-12 section-container-spacer">
+      <h3> 검색하신 {{ keyword }} 정보입니다. </h3>
+    </div>
+    <div style="max-width: 1600px; margin: 30px auto 60px; padding: 0 20px;display: grid; grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); grid-gap: 20px;">
+    {% for post in search %}
+      <div class="col-xs-12 col-md-4 section-container-spacer" style=" width: 100%; padding: 20px; background-color: #fff;  solid #f0f0f0;">
+        <div>
+          <div style=" max-width: 90%;  height: 30vw; max-height: 300px; text-align: center;">
+            <img class="img-responsive" alt="" src="{{ post.image.url }}" style=" background-size: cover; background-repeat: no-repeat; ">
           </div>
-          {% for post in search %}
-          <div class="col-xs-12 col-md-4 section-container-spacer">
-            <img class="img-responsive" alt="" src="{{ post.image.url }}" width="50%">
-            <h4>{{post.title | truncatechars:10 }}</h4>
-            <p>{{post.content | safe  }} </p>
+          <div style="width: 100%; height: 7vw;">
+            <h2>{{post.title| truncatechars:10}}</h2>
+            <p>{{post.content | safe}}</p>
+          </div> 
+          <div style="width: 15%; height: 4vw;">
             <a href="{% url 'post:post-detail' post.id%}" class="btn btn-primary" title="">View Dessert</a>
-          </div>
-          {% endfor %}
-        {% else %}
-        <h1> 찾고 있는 레시피를 검색창에 입력해주세요. </h1>
-        {% endif %}
+          </div> 
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  {% else %}
+  <h1> 찾고 있는 레시피를 검색창에 입력해주세요. </h1>
+  {% endif %}
 {% endblock %}

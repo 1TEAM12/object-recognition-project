@@ -20,45 +20,13 @@
                 <div class='post_create-create_box'>
                     <div class='post_create-create_box-main'>
                         <div class="preview">
-                            {% comment %}
-                            <div class="post_create-create_box-upload"> 
-                                <div class="post_create-create_box-post_btn">
-                                    <div class="plus_icon">
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                    <canvas class='post_creat-create_box-canvas' id="imageCanvas">
-                                        <img src='{{temp_img.url}}' name="temp_img">
-                                        <input name="temp_img" type="file" onchange="setThumbnail(event);">
-                                        <div id="image_container"></div> 
-                                    </canvas>
-                                </div>
-                                <div class='post_create-create_box-arrow'>
-                                    👉
-                                </div>
-                                {% endcomment %}
-                                <div class='post_create-create_box-right_load'style="margin:auto;margin-top:20px;">
-                                    <div id="image_container"></div>
-                                    <img src="{{dess_image.url}}" style="width:100%;" name="dess_img">
-                                    <p style="text-align: center;">{{dess_name}}</P>
-                                </div>
-                            <!-- </div> -->
+                            <div class='post_create-create_box-right_load'style="margin:auto;margin-top:20px;">      
+                                <img src="{{dessert.image.url}}" style="width:100%;" name="dess_img">
+                                <p style="text-align: center;">{{dessert.dessert_name}}</P>
+                            </div>
                         </div>
-                        {% comment %}
-                        <div class='post_create-create_box-file_pick'style="border:solid green" >
-                            <form class="post_form" method="post" action="{% url 'post:post-detect' %}"
-                                autocomplete="off" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div>
-                                    <img src="{{dess_image.url}}" style="width:100%;" name="dess_img">
-                                    <!-- <input id='id_photo' name="image" type="file"> -->
-                                </div>
-                                <!-- <button class="post_create-create_box-save_btn" type="submit"><b>디져트 추천</b></button> -->
-                            </form>
-                        </div>
-                        {% endcomment %}
                         <hr>
-                        <form class="post_form" method="post" action="{% url 'post:post-create' %}" autocomplete="off">
+                        <form class="post_form" method="post" autocomplete="off">
                             {% csrf_token %}
                             <input type="hidden" name="dess_id" value="{{dess_id}}">
                             <input type="hidden" name="dess_ingred" value="{{dess_ingred}}">
