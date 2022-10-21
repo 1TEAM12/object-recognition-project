@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import Notification
-from post.models import Post
 
+#####알림#####
 @login_required(login_url='user:signin')
 def notifications(request, user_id):
     context =dict()

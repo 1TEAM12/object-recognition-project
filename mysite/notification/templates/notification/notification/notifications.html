@@ -12,26 +12,39 @@
             {% for notification in notifications %}
                     <div class="media-content">
                         <div class="content">
-                            <p>
-                            {% if notification.notification_type == 'followers' and notification.to_user.username == request.user.username %}                                    
-                                    <strong>{{ notification.created_by.username }}</strong> 님이 당신을 팔로우 합니다.<br>
-                                    <small>{{ notification.created_at }}</small>
-                                    <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
-                                    <button style="background-color:#FFCD48; border-color: #FFCD48;">읽음</button>
-                                    </form>
+                            <div>
+                            {% if notification.notification_type == 'followers' and notification.to_user.username == request.user.username %}         
+                                    <div style='padding:8px 16px; border-radius:8px; width:700px; box-shadow: 0px 1px 10px -4px rgb(153 153 153); display:flex; align-items:center; justify-content:space-between;margin-top:18px;'>                   
+                                        <div><strong>{{ notification.created_by.username }}</strong> 님이 당신을 팔로우 합니다.</div>
+                                        <div><small>{{ notification.created_at }}</small></div>
+                                        <div>   
+                                            <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
+                                            <button style="width:65px; height:32px; border-radius: 12px; border: 0; background-color:#FFCD48; border-color: #FFCD48; color:white;">읽음</button>
+                                            </form>
+                                        </div>
+                                    </div>
                             {% elif notification.notification_type == 'post_like' and notification.to_user.username != request.user.username %}
-                                    <strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title | truncatechars:10 }}...</a>의 게시글을 좋아합니다.<br>
-                                    <small>{{ notification.created_at }}</small>
-                                    <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
-                                    <button style="background-color:#FFCD48; border-color: #FFCD48;">읽음</button>
-                                    </form>
+                                    <div style='padding:8px 16px; border-radius:8px; width:700px; box-shadow: 0px 1px 10px -4px rgb(153 153 153); display:flex; align-items:center; justify-content:space-between;margin-top:18px;'>
+                                        <div><strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title | truncatechars:10 }}...</a>의 게시글을 좋아합니다.</div>
+                                        <div><small>{{ notification.created_at }}</small></div>
+                                        <div>
+                                            <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
+                                            <button style="width:65px; height:32px; border-radius: 12px; border: 0; background-color:#FFCD48; border-color: #FFCD48; color:white;">읽음</button>
+                                            </form>
+                                        </div>
+                                    </div>
                             {% elif notification.notification_type == 'comment' and notification.to_user.username != request.user.username %}
-                                    <strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title | truncatechars:10 }}...</a>의 게시글에 댓글을 작성했습니다. <br>
-                                    <small>{{ notification.created_at }}</small>
-                                    <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
-                                    <button style="background-color:#FFCD48; border-color: #FFCD48;">읽음</button>
+                                    <div style='padding:8px 16px; border-radius:8px; width:700px; box-shadow: 0px 1px 10px -4px rgb(153 153 153); display:flex; align-items:center; justify-content:space-between;margin-top:18px;'>
+                                        <div><strong>{{ notification.created_by.username }}</strong> 님이 <a href="{% url 'post:post-detail' notification.post_like.id %}"> {{ notification.post_like.title | truncatechars:10 }}...</a>의 게시글에 댓글을 작성했습니다.</div>
+                                        <div><small>{{ notification.created_at }}</small></div>                                       
+                                        <div>
+                                            <form method='post' action='{% url 'notifications:process-notifications' notification.id %}' >{% csrf_token %}
+                                            <button style="width:65px; height:32px; border-radius: 12px; border: 0; background-color:#FFCD48; border-color: #FFCD48; color:white;">읽음</button>
+                                            </form>
+                                        </div>
+                                    </div>
                             {% endif %}
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </article>

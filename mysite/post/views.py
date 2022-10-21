@@ -5,21 +5,21 @@ from django.db.models import Q
 from .models import Post, Comment, TempImg, Dessert
 from .img_det import pick_img
 
-from recipe.models import Recipe
 from user.models import User
-
-import random
 from notification.utilities import create_notification
 
-# Create your views here.
+import random
 
+# Create your views here.
+#전체페이지
 def index(request):
     if request.method == 'GET':
         context = dict()
         context['users'] = User.objects.all()
         context['posts'] = Post.objects.all().order_by('-created_at')
         return render(request, 'post/post/index.html', context=context)
-    
+
+#상세페이지
 @login_required(login_url='user:signin')
 def post_detail(request, post_id):
     if request.method == 'GET':
@@ -30,7 +30,8 @@ def post_detail(request, post_id):
         dessert_temp = Dessert.objects.filter(ingred=post_ing)
         context['desserts'] = random.sample(list(dessert_temp), k=3)
         return render(request, 'post/post/post_detail.html', context=context)
-    
+
+#내가 만든 리스트
 @login_required(login_url='user:signin')
 def my_list(request, user_id):
     if request.method == 'GET':
@@ -174,20 +175,14 @@ def post_detect(request):
     if request.method == "POST":
         temp_img = TempImg()
         temp_img.image = request.FILES.get('before_image')
-        # temp_img.image = request.POST['before_image']
-        print(temp_img.image)
         temp_img.save()
-        print(temp_img.image)
         
         img_url = temp_img.image
         context = pick_img(request,img_url)
-        
-        print(context['picked'])
-        
+                
         ing_list = Dessert()
         ing_list = Dessert.objects.filter(ingred=context['picked'])
-        print(ing_list)
-        
+                
         rand_pick = random.choice(ing_list)
         context['dess_image'] = rand_pick.image
         context['dess_id'] = rand_pick.id
@@ -207,9 +202,7 @@ def post_detect_update(request, post_id):
 
         img_url = temp_img.image
         context = pick_img(request,img_url)
-        
-        print(context['picked'])
-        
+                
         # post -> context
         post = Post.objects.get(id=post_id)
         context['post'] = post
@@ -226,7 +219,6 @@ def post_detect_update(request, post_id):
         context['dess_id'] = rand_pick.id
         context['dess_name'] = rand_pick.dessert_name
         context['dess_ingred'] = rand_pick.ingred
-        print(context)
 
         return render(request, 'post/post/post_update.html', context)
     

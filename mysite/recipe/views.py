@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404, render, get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Recipe
-from post.models import Dessert
- 
+
 # Create your views here.
+#####레시피#####
 @login_required(login_url='user:signin')
 def recipe_detail(request, recipe_id):
     if request.method == 'GET':

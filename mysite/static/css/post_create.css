@@ -74,7 +74,7 @@
 .post_create-create_box-save_btn{
     margin: auto;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 10px;    
     border: 2px solid #FFCD48;
     height: 40px;
     background-color: #FFCD48;
@@ -104,6 +104,15 @@
     font-size: 17px;
     outline: none;
     border: white;
+}
+
+.post_create-create_recommend_btn{
+    width: 35%;
+    margin-left:200px;
+    border-radius: 10px;
+    border: 2px solid #FFCD48;
+    height: 38px;
+    background-color: #FFCD48;
 }
 
 
