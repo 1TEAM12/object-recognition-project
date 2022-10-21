@@ -7,7 +7,6 @@ from post.models import Post
 from .validators import contains_special_character, contains_uppercase_letter, contains_lowercase_letter, contains_number
 from notification.utilities import create_notification
 import requests
-# Create your views here.
 
 #####로그인#####
 def signin(request):

@@ -1,7 +1,6 @@
 from django.db import models
 from user.models import User
 
-# Create your models here.
 class Recipe(models.Model):
     title = models.CharField(max_length=30, blank=True)
     youtube_url = models.URLField(max_length=100)

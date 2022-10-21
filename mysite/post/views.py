@@ -10,7 +10,6 @@ from notification.utilities import create_notification
 
 import random
 
-# Create your views here.
 #전체페이지
 def index(request):
     if request.method == 'GET':

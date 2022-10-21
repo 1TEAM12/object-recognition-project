@@ -2,8 +2,6 @@ from django.db import models
 from user.models import User
 from recipe.models import Recipe
 
-# Create your models here.
-
 class Dessert(models.Model):
     ingred = models.CharField(max_length=20, blank=True)
     dessert_name = models.TextField(blank=True)
@@ -26,7 +24,7 @@ class Post(models.Model):
     title = models.CharField(max_length=30, blank=True)
     image = models.ImageField(upload_to="post_pics", blank=True)
     ingred = models.CharField(max_length=20, blank=True)        # img det 결과가 들어올 위치
-    dessert = models.ForeignKey(Dessert, on_delete=models.PROTECT, related_name='dessert_post')                    # ingred를 통해 요리 추천
+    dessert = models.ForeignKey(Dessert, on_delete=models.PROTECT, related_name='dessert_post')   # ingred를 통해 요리 추천
 
     content = models.TextField(max_length=100,null=True,blank=True )
     created_at = models.DateTimeField(auto_now_add=True)
@@ -41,7 +39,7 @@ class Post(models.Model):
         return self.title
     
     
-           # -> result (재료label, 요리명, 요리img, 레시피)
+        # -> result (재료label, 요리명, 요리img, 레시피)
 class Comment(models.Model):
     content = models.TextField(max_length=50, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)

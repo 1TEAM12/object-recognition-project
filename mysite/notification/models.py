@@ -1,7 +1,6 @@
 from django.db import models
 from user.models import User
 from post.models import Post
-# Create your models here.
 class Notification(models.Model):
     FOLLOWER = 'followers'
     POSTLIKE = 'post_like'
