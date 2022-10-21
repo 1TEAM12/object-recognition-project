@@ -112,7 +112,7 @@ def kakao_social_login_callback(request):
             'https://kauth.kakao.com/oauth/token', {'grant_type': 'authorization_code',
                                                     'client_id': kakao_id, 'redierect_uri': redirect_uri, 'code': code}
         )
-        
+
         token_json = token_request.json()
 
         error = token_json.get('error', None)
