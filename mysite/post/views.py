@@ -5,8 +5,8 @@ from django.db.models import Q
 from .models import Post, Comment, TempImg, Dessert
 from .img_det import pick_img
 
-from user.models import User
-from notification.utilities import create_notification
+from user.models import User 
+from notification.utilities import CreateNotification
 
 import random
 
@@ -95,7 +95,7 @@ def comment_create(request, comment_id):
         post = Post.objects.get(id=comment_id)
         content = request.POST.get('content')
         Comment.objects.create(content=content, author=user, post=post)
-        create_notification(request, user, 'comment', post)
+        CreateNotification.like_comment_create_notification(request, user, 'comment', post)
         return redirect('post:post-detail', post.id)
 
 #댓글 수정
@@ -131,7 +131,7 @@ def likes(request, post_id):
         post.like_authors.remove(request.user)
     else:
         post.like_authors.add(request.user)
-        create_notification(request, user, 'post_like', post)
+        CreateNotification.like_comment_create_notification(request, user, 'post_like', post)
         
     return redirect(request.META['HTTP_REFERER'])
 
