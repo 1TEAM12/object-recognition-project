@@ -146,6 +146,7 @@ def likes_list(request, post_id):
         return render(request, 'post/post/post_like_list.html', context=context)
 
 #검색
+@login_required(login_url='user:signin')
 def search(request):
     post_result = Post.objects.all()
     keyword = request.GET.get('keyword')
