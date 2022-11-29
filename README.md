@@ -21,3 +21,7 @@ https://bolder-starburst-a73.notion.site/dccb55d23e7843c69d1f84122270a1d7
 ![ex_screenshot](./img/API7.PNG)
 ![ex_screenshot](./img/API8.PNG)
 
+## ****🎨 API 설계****
+#- 사용한 머신러닝 모듈 : ultralytics/yolov5
+#- 기능 : 업로드된 이미지에 포함된 과일을 인식하고, 그 중 하나를 추출
+#- 검출대상 label : ['apple', 'banana', 'pineapple', 'orange', 'pear', 'guava' ]
