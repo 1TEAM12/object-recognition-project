@@ -8,7 +8,7 @@ class Recipe(models.Model):
     
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
-      
+    
     like_authors = models.ManyToManyField(User, related_name='like_recipes')
     
     def __str__(self):

@@ -25,7 +25,7 @@ def post_detail(request, post_id):
         context = dict()
         context['post'] = Post.objects.get(id=post_id)
         post_ing = context['post'].ingred
-        context['comment'] = Comment.objects.filter(post_id=post_id).order_by('-created_at')
+        context['comment'] = Comment.objects.filter(post_id=post_id)
         dessert_temp = Dessert.objects.filter(ingred=post_ing)
         context['desserts'] = random.sample(list(dessert_temp), k=3)
         return render(request, 'post/post/post_detail.html', context=context)
@@ -89,13 +89,13 @@ def post_delete(request, post_id):
 
 # 댓글 생성
 @login_required(login_url='user:signin')
-def comment_create(request, comment_id):
+def comment_create(request, post_id):
     if request.method == 'POST':
         user = request.user
-        post = Post.objects.get(id=comment_id)
+        post = Post.objects.get(id=post_id)
         content = request.POST.get('content')
         Comment.objects.create(content=content, author=user, post=post)
-        CreateNotification.like_comment_create_notification(request, user, 'comment', post)
+        # CreateNotification.like_comment_create_notification(request, user, 'comment', post)/
         return redirect('post:post-detail', post.id)
 
 #댓글 수정
@@ -129,6 +129,7 @@ def likes(request, post_id):
         post = Post.objects.get(id=post_id)
     if post.like_authors.filter(id=request.user.id).exists():
         post.like_authors.remove(request.user)
+        
     else:
         post.like_authors.add(request.user)
         CreateNotification.like_comment_create_notification(request, user, 'post_like', post)
@@ -152,8 +153,6 @@ def search(request):
     keyword = request.GET.get('keyword')
     if keyword: 
         post_result = post_result.filter(
-            # Q 함수 OR조건으로 데이터 조회
-            # icontains 대소문자 구분없이 필드에 단어 포함되어 있는지 검사
             Q(title__icontains=keyword) |
             Q(content__icontains=keyword)
         )
@@ -190,36 +189,3 @@ def post_detect(request):
         context['dess_ingred'] = rand_pick.ingred
 
         return render(request, 'post/post/post_create.html', context)
-    
-    
-# update에서 image detect 함수 호출
-@login_required(login_url='user:signin')
-def post_detect_update(request, post_id):
-    if request.method == "POST":
-        temp_img = TempImg()
-        temp_img.image = request.FILES.get('image')
-        temp_img.save()
-
-        img_url = temp_img.image
-        context = pick_img(request,img_url)
-                
-        # post -> context
-        post = Post.objects.get(id=post_id)
-        context['post'] = post
-        
-        # 재료사진 -> context
-        context['temp_img'] = temp_img
-        
-        ing_list = Dessert()
-        ing_list = Dessert.objects.filter(ingred=context['picked'])
-        rand_pick = random.choice(ing_list)  
-        
-        # 머신러닝 결과 (요리사진) -> context
-        context['dess_image'] = rand_pick.image
-        context['dess_id'] = rand_pick.id
-        context['dess_name'] = rand_pick.dessert_name
-        context['dess_ingred'] = rand_pick.ingred
-
-        return render(request, 'post/post/post_update.html', context)
-    
-    
