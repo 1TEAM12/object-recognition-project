@@ -14,7 +14,7 @@ https://bolder-starburst-a73.notion.site/dccb55d23e7843c69d1f84122270a1d7
 ## ****🕸 와이어 프레임****
 ![ex_screenshot](./img/wireframe.PNG)
 ## ****🎯 데이터베이스****
-![ex_screenshot](./img/erd.PNG)
+![ex_screenshot](./img/api1.PNG)
 ## ****🎨 API 설계****
 ![ex_screenshot](./img/API5.PNG)
 ![ex_screenshot](./img/API6.PNG)
