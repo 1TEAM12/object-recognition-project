@@ -190,36 +190,3 @@ def post_detect(request):
         context['dess_ingred'] = rand_pick.ingred
 
         return render(request, 'post/post/post_create.html', context)
-    
-    
-# update에서 image detect 함수 호출
-@login_required(login_url='user:signin')
-def post_detect_update(request, post_id):
-    if request.method == "POST":
-        temp_img = TempImg()
-        temp_img.image = request.FILES.get('image')
-        temp_img.save()
-
-        img_url = temp_img.image
-        context = pick_img(request,img_url)
-                
-        # post -> context
-        post = Post.objects.get(id=post_id)
-        context['post'] = post
-        
-        # 재료사진 -> context
-        context['temp_img'] = temp_img
-        
-        ing_list = Dessert()
-        ing_list = Dessert.objects.filter(ingred=context['picked'])
-        rand_pick = random.choice(ing_list)  
-        
-        # 머신러닝 결과 (요리사진) -> context
-        context['dess_image'] = rand_pick.image
-        context['dess_id'] = rand_pick.id
-        context['dess_name'] = rand_pick.dessert_name
-        context['dess_ingred'] = rand_pick.ingred
-
-        return render(request, 'post/post/post_update.html', context)
-    
-    
